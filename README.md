@@ -35,3 +35,10 @@ stow <package>
 cd ~/dotfiles
 stow -D <package>
 ```
+
+## Fonts
+
+```sh
+stow fonts
+fc-cache -fv # update the font cache.
+```
