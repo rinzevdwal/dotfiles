@@ -1,0 +1,1 @@
+lazygit_0.55.0_linux_x86_64/
