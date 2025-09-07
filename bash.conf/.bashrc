@@ -136,6 +136,8 @@ fi
 
 # fzf shell integration
 if which fzf >/dev/null; then
-    . ~/.config/fzf/config.sh
+    if [ -f ~/.config/fzf/config.sh ]; then
+        . ~/.config/fzf/config.sh
+    fi
 fi
 
