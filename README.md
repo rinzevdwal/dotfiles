@@ -42,3 +42,11 @@ stow -D <package>
 stow fonts
 fc-cache -fv # update the font cache.
 ```
+
+## bat
+
+```sh
+stow bat.conf
+bat cache --build
+```
+
