@@ -1,0 +1,1 @@
+lsd-v1.1.5-x86_64-unknown-linux-musl/

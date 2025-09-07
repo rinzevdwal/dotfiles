@@ -7,6 +7,13 @@ if which eza >/dev/null; then
     alias l='eza -F --icons'
 fi
 
+# Use lsd instead of ls / eza
+if which lsd >/dev/null; then
+    alias ll='lsd -alFg'
+    alias la='lsd -aF'
+    alias l='lsd -F'
+fi
+
 if which bat >/dev/null; then
     alias cat='bat -pp'
 fi
