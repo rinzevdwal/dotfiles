@@ -136,6 +136,7 @@ fi
 
 # fzf shell integration
 if which fzf >/dev/null; then
+    eval "$(fzf --bash)"
     if [ -f ~/.config/fzf/config.sh ]; then
         . ~/.config/fzf/config.sh
     fi
