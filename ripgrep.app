@@ -1,1 +1,0 @@
-ripgrep-14.1.1-x86_64-unknown-linux-musl/

@@ -45,8 +45,19 @@ fc-cache -fv # update the font cache.
 
 ## bat
 
+
+
 ```sh
-stow bat.conf
-bat cache --build
+stow conf.bat
+bat cache --build # rebuild bat's cache to load the theme
 ```
 
+## Application
+
+kitty: kitty-0.42.2-x86_64
+bat: bat-v0.25.0-x86_64-unknown-linux-musl
+fzf: fzf-0.65.2-linux_amd64
+lazygit: lazygit_0.55.0_linux_x86_64
+lsd: lsd-v1.1.5-x86_64-unknown-linux-musl
+ripgrep: ripgrep-14.1.1-x86_64-unknown-linux-musl
+starship: starship-x86_64-unknown-linux-musl
