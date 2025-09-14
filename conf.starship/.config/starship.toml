@@ -4,6 +4,7 @@ $hostname\
 $directory\
 $git_branch\
 $git_state\
+${custom.git_status_dirty}\
 $git_status\
 $cmd_duration\
 $line_break\
@@ -25,15 +26,16 @@ format = "[$branch]($style)"
 style = "subtext0"
 
 [git_status]
-format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
-style = "sapphire"
-conflicted = "​"
-untracked = "​"
-modified = "​"
-staged = "​"
-renamed = "​"
-deleted = "​"
+format = "[($ahead_behind$stashed)]($style)"
+style = "sky"
 stashed = "≡"
+
+[custom.git_status_dirty]
+when = 'test -n "$(git status --porcelain)"'
+symbol = "*"
+style = "mauve"
+format="[$symbol]($style) "
+shell = ["bash", "--norc", "--noprofile"]
 
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
