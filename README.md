@@ -7,9 +7,8 @@ My dotfiles managed by gnu stow.
 Create some folder to prevent them being symlinked for other application.
 
 ```sh
-mkdir -p ~/.local/bin
-mkdir -p ~/.local/share
-mkdir -p ~/.local/share/man
+mkdir -p ~/.local/share/man/man1
+mkdir -p ~/.local/share/man/man5
 mkdir -p ~/.local/share/fonts
 mkdir -p ~/.local/share/icons
 ```
@@ -45,8 +44,6 @@ fc-cache -fv # update the font cache.
 
 ## bat
 
-
-
 ```sh
 stow conf.bat
 bat cache --build # rebuild bat's cache to load the theme
@@ -61,3 +58,4 @@ lazygit: lazygit_0.55.0_linux_x86_64
 lsd: lsd-v1.1.5-x86_64-unknown-linux-musl
 ripgrep: ripgrep-14.1.1-x86_64-unknown-linux-musl
 starship: starship-x86_64-unknown-linux-musl
+btop: apt version
