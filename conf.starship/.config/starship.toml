@@ -13,6 +13,8 @@ $character"""
 
 palette = 'catppuccin_mocha'
 
+continuation_prompt = '[∙ ](subtext0)'
+
 [directory]
 style = "blue"
 
