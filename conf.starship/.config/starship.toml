@@ -26,7 +26,7 @@ format = "[$branch]($style)"
 style = "subtext0"
 
 [git_status]
-format = "[($ahead_behind$stashed)]($style)"
+format = "[($ahead_behind$stashed)]($style) "
 style = "sky"
 stashed = "≡"
 
