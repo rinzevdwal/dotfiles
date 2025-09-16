@@ -59,3 +59,4 @@ bat cache --build # rebuild bat's cache to load the theme
 - ripgrep: ripgrep-14.1.1-x86_64-unknown-linux-musl
 - starship: starship-x86_64-unknown-linux-musl
 - btop: apt version
+- fastfetch: fastfetch-linux-amd64 2.52.0
