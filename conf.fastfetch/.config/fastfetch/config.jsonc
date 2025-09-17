@@ -4,120 +4,81 @@
         "source": "~/.config/fastfetch/cat_terminal.png",
         "type": "kitty-icat",
         "height": 16,
-        "width": 34,
+        "width": 30,
         "padding": {
-            "top": 4,
-           "left": 4
+            "top": 2,
+            "left": 2
         }
+    },
+    "display": {
+        "separator": " ",
+        "color": "#b4befe"
     },
     "modules": [
         "break",
-        {
-            "type": "custom",
-            "format": "┌────────────────────── Hardware ──────────────────────┐",
-            "outputColor": "red"
-        },
-        {
-            "type": "title",
-            "key": " PC",
-            "keyColor": "green"
-        },
-        {
-            "type": "cpu",
-            "key": "│ ├󰍛 CPU",
-            "showPeCoreCount": true,
-            "format": "{1}",
-            "keyColor": "green"
-        },
-        {
-            "type": "gpu",
-            "key": "│ ├󰍛 GPU",
-            "keyColor": "green"
-        },
-        {
-            "type": "memory",
-            "key": "└ └󰍛 Memory",
-            "keyColor": "green"
-        },
-        {
-            "type": "custom",
-            "format": "└──────────────────────────────────────────────────────┘",
-            "outputColor": "red"
-        },
+        "break",
         "break",
         {
             "type": "custom",
-            "format": "┌────────────────────── Software ──────────────────────┐",
-            "outputColor": "red"
+            "format": "\u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[35m  \u001b[36m  \u001b[37m "
         },
+        "break",
+        {
+            "type": "title",
+            "keyWidth": 10
+        },
+        "break",
         {
             "type": "os",
-            "key": " OS",
-            "keyColor": "yellow"
+            "key": " "
         },
         {
             "type": "kernel",
-            "key": "│ ├ Kernel",
-            "keyColor": "yellow"
-        },
-        {
-            "type": "packages",
-            "key": "│ ├󰏖 Packages",
-            "keyColor": "yellow"
+            "key": " "
         },
         {
             "type": "shell",
-            "key": "│ ├ Shell",
-            "keyColor": "yellow"
+            "key": " "
         },
         {
-            "type": "command",
-            "key": "│ ├ OS Age",
-            "keyColor": "yellow",
-            "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days"
-        },
-        {
-            "type": "uptime",
-            "key": "└ └ Uptime",
-            "keyColor": "yellow"
-        },
-        "break",
-        {
-            "type": "de",
-            "key": " DE",
-            "keyColor": "blue"
-        },
-        {
-            "type": "lm",
-            "key": "│ ├ LM",
-            "keyColor": "blue"
+            "type": "terminal",
+            "key": " "
         },
         {
             "type": "wm",
-            "key": "│ ├ WM",
-            "keyColor": "blue"
+            "key": " "
         },
         {
-            "type": "gpu",
-            "key": "│ ├󰍛 GPU Driver",
-            "format": "{3}",
-            "keyColor": "blue"
+            "type": "cursor",
+            "key": " "
         },
         {
-            "type": "wmtheme",
-            "key": "└ └󰉼 Theme",
-            "keyColor": "blue"
+            "type": "terminalfont",
+            "key": " "
         },
-
+        {
+            "type": "uptime",
+            "key": " "
+        },
+        {
+            "type": "datetime",
+            "format": "{1}-{3}-{11}",
+            "key": " "
+        },
+        {
+            "type": "media",
+            "key": "󰝚 "
+        },
+        {
+            "type": "player",
+            "key": " "
+        },
+        "break",
         {
             "type": "custom",
-            "format": "└────────────────────────────────────────────────────┘",
-            "outputColor": "red"
+            "format": "\u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[35m  \u001b[36m  \u001b[37m "
         },
-        {
-            "type": "custom",
-            "format": "               \u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[35m  \u001b[36m  \u001b[37m "
-        },
+        "break",
         "break"
     ]
 }
