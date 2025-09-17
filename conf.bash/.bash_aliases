@@ -18,3 +18,7 @@ if which bat >/dev/null; then
     alias cat='bat -pp'
 fi
 
+if which fastfetch >/dev/null; then
+    alias fetch='fastfetch'
+fi
+
