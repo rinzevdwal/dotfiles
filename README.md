@@ -60,3 +60,24 @@ bat cache --build # rebuild bat's cache to load the theme
 - starship: starship-x86_64-unknown-linux-musl
 - btop: apt version
 - fastfetch: fastfetch-linux-amd64 2.52.0
+
+## TODO
+
+- i3 config / split up?
+- i3lock color
+- picom
+- rofi
+- polybar
+- xborder
+- auto-tiling
+- screenshots
+- notifications
+
+## DE
+
+- i3status
+- feh
+- i3lock-fancy
+- dmenu
+- nm-applet
+- pactl
