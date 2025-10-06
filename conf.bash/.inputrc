@@ -1,0 +1,17 @@
+$include /etc/inputrc
+
+#Search history matching the text you already typed
+"/C-p": history-search-backward
+"/C-n": history-search-forward
+
+#Completion tweaks
+set completion-ignore-case On
+set completion-prefix-display-length 5
+set show-all-if-ambiguous On
+set show-all-if-unmodified On
+
+# Quality of life
+set colored-stats On
+set visible-stats On
+set mark-symlinked-directories On
+set bell-style visible
