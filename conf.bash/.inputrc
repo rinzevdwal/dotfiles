@@ -1,9 +1,5 @@
 $include /etc/inputrc
 
-#Search history matching the text you already typed
-"/C-p": history-search-backward
-"/C-n": history-search-forward
-
 #Completion tweaks
 set completion-ignore-case On
 set completion-prefix-display-length 5
