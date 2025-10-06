@@ -1,5 +1,7 @@
 # custom aliases for bash
 
+alias cwd='copy_working_directory'
+
 # Use eza instead of ls
 if which eza >/dev/null; then
     alias ll='eza -laaghF --icons'
@@ -21,4 +23,3 @@ fi
 if which fastfetch >/dev/null; then
     alias fetch='fastfetch'
 fi
-

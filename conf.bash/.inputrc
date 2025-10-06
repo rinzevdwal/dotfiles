@@ -1,13 +1,20 @@
 $include /etc/inputrc
 
 #Completion tweaks
-set completion-ignore-case On
+TAB: menu-complete
+"\e[Z": menu-complete-backward
+
+set skip-completed-text on
+set show-all-if-unmodified on
+set show-all-if-ambiguous on
+set menu-complete-display-prefix on
 set completion-prefix-display-length 5
-set show-all-if-ambiguous On
-set show-all-if-unmodified On
+set completion-map-case on
+set completion-ignore-case on
 
 # Quality of life
-set colored-stats On
-set visible-stats On
-set mark-symlinked-directories On
+set visible-stats on
+set mark-symlinked-directories on
+set colored-stats on
+set colored-completion-prefix on
 set bell-style visible

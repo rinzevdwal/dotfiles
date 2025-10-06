@@ -124,11 +124,26 @@ export NVM_NODEJS_ORG_MIRROR="https://git.ghs.nl/devops/nodejs/node_binaries/-/r
 
 export NODE_OPTIONS=--use-openssl-ca
 
-# cd without cd
-shopt -s autocd
+# Custom changes
 
-# cd spelling correction
-shopt -s cdspell
+#  - autocd - change directory without entering the 'cd' command
+#  - cdspell - automatically fix directory typos when changing directory
+#  - direxpand - automatically expand directory globs when completing
+#  - dirspell - automatically fix directory typos when completing
+#  - globstar - ** recursive glob
+#  - histappend - append to history, don't overwrite
+#  - histverify - expand, but don't automatically execute, history expansions
+#  - nocaseglob - case-insensitive globbing
+#  - no_empty_cmd_completion - do not TAB expand empty lines
+shopt -s autocd cdspell direxpand dirspell globstar histappend histverify \
+    nocaseglob no_empty_cmd_completion
+
+HISTCONTROL=ignoreboth:erasedups # Ignore and erase duplicates
+HISTIGNORE=?:??                  # Ignore one and two letter commands
+HISTFILESIZE=99999               # Max size of history file
+HISTSIZE=99999                   # Amount of history to preserve
+# Share history between concurrent Bash sessions
+PROMPT_COMMAND="history -a; history -n"
 
 # starship shell integration
 if which starship >/dev/null; then
@@ -147,3 +162,7 @@ if which fzf >/dev/null; then
         . ~/.config/fzf/config.sh
     fi
 fi
+
+copy_working_directory() {
+    echo -n ${PWD/#$HOME/\~} | tr -d "\r\n" | xclip -selection clipboard -i
+}
