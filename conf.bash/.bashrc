@@ -124,6 +124,12 @@ export NVM_NODEJS_ORG_MIRROR="https://git.ghs.nl/devops/nodejs/node_binaries/-/r
 
 export NODE_OPTIONS=--use-openssl-ca
 
+# cd without cd
+shopt -s autocd
+
+# cd spelling correction
+shopt -s cdspell
+
 # starship shell integration
 if which starship >/dev/null; then
     eval "$(starship init bash)"
@@ -141,4 +147,3 @@ if which fzf >/dev/null; then
         . ~/.config/fzf/config.sh
     fi
 fi
-
