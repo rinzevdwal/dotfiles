@@ -18,6 +18,8 @@ export FZF_DEFAULT_OPTS="
     --bind 'ctrl-y:execute-silent(echo {+} | xclip -selection clipboard)'
     --bind 'ctrl-e:execute(echo {+} | xargs -o vim)'
     --bind 'ctrl-v:execute(code {+})'
+    --header-first
+    --header 'CTRL-a:Select all, CTRL-y:Copy to clipboard, CTRL-e:Vim, CTRL-v:Code'
     "
 # use ripgrep as search engine
 if which rg >/dev/null; then
