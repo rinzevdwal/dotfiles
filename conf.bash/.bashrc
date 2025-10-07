@@ -126,6 +126,10 @@ export NODE_OPTIONS=--use-openssl-ca
 
 # Custom changes
 
+# Set vim as editor
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
 #  - autocd - change directory without entering the 'cd' command
 #  - cdspell - automatically fix directory typos when changing directory
 #  - direxpand - automatically expand directory globs when completing
