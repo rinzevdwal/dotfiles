@@ -18,10 +18,10 @@ export FZF_DEFAULT_OPTS="
     --bind 'ctrl-y:execute-silent(echo {+} | xclip -selection clipboard)'
     --bind 'ctrl-e:execute(echo {+} | xargs -o vim)'
     --bind 'ctrl-v:execute(code {+})'
-    --header-first
-    --header 'CTRL-a:Select all, CTRL-y:Copy to clipboard, CTRL-e:Vim, CTRL-v:Code'
+    --footer='?:Preview, CTRL-a:Select all, CTRL-y:Copy to clipboard, CTRL-e:Vim, CTRL-v:Code'
     "
 # use ripgrep as search engine
 if which rg >/dev/null; then
     export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
