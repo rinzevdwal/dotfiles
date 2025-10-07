@@ -145,7 +145,12 @@ HISTSIZE=99999                   # Amount of history to preserve
 # Share history between concurrent Bash sessions
 PROMPT_COMMAND="history -a; history -n"
 
-# starship shell integration
+# Function for copying the working directory
+copy_working_directory() {
+    echo -n ${PWD/#$HOME/\~} | tr -d "\r\n" | xclip -selection clipboard -i
+}
+
+# Starship shell integration
 if which starship >/dev/null; then
     eval "$(starship init bash)"
 fi
@@ -162,7 +167,3 @@ if which fzf >/dev/null; then
         . ~/.config/fzf/config.sh
     fi
 fi
-
-copy_working_directory() {
-    echo -n ${PWD/#$HOME/\~} | tr -d "\r\n" | xclip -selection clipboard -i
-}
