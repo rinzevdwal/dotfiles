@@ -56,6 +56,12 @@ sudo apt update && sudo apt install -y \
     xclip \
     btop \
     feh \
+    fd-find \
+```
+
+```sh
+# symbolic link for fdfind to fd
+ln -s $(which fdfind) ~/.local/bin/fd
 ```
 
 ```sh
