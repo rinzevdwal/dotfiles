@@ -49,6 +49,19 @@ stow conf.bat
 bat cache --build # rebuild bat's cache to load the theme
 ```
 
+## git
+
+```sh
+stow conf.git
+```
+
+add to `~/.gitconfig`
+
+```sh
+[include]
+    path = ~/.git_aliases
+```
+
 ## Application
 
 ```sh
