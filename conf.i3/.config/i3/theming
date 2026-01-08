@@ -44,6 +44,9 @@ for_window [class="^.*"] border pixel 4
 # finds out, if available)
 bar {
         status_command i3status
+        position top
+        tray_output primary
+
         colors {
                 background         $base
                 statusline         $text
