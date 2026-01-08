@@ -112,6 +112,14 @@ meson setup
 ninja
 sudo ninja install
 ```
+```sh
+# os tooling
+sudo apt update && sudo apt install -y \
+    feh \
+    xrandr \
+    arandr \
+    autorandr \
+```
 
 - kitty: kitty-0.42.2-x86_64
 - bat: bat-v0.25.0-x86_64-unknown-linux-musl
