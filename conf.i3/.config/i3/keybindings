@@ -1,4 +1,5 @@
 set $mod Mod4
+set $alt Mod1
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -172,3 +173,7 @@ mode "exit: [l]ogout, [r]eboot, [s]hutdown" {
 }
 
 bindsym $mod+Shift+e mode "exit: [l]ogout, [r]eboot, [s]hutdown"
+
+# copy and paste script for usb
+bindsym Control+$alt+c exec ~/scripts/clipboard/copy_to_usb.sh
+bindsym Control+$alt+v exec ~/scripts/clipboard/paste_from_usb.sh
