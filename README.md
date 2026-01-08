@@ -122,7 +122,8 @@ sudo apt update && sudo apt install -y \
     autorandr \
     dunst \
     udisks2 \
-    udiskie
+    udiskie \
+    i3lock-fancy
 ```
 
 - kitty: kitty-0.42.2-x86_64
@@ -147,6 +148,8 @@ sudo apt update && sudo apt install -y \
 - auto-tiling
 - screenshots
 - notifications configuration
+- mouse layout
+- lock-screen
 
 ## DE
 
