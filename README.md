@@ -112,6 +112,7 @@ meson setup
 ninja
 sudo ninja install
 ```
+
 ```sh
 # os tooling
 sudo apt update && sudo apt install -y \
@@ -119,6 +120,9 @@ sudo apt update && sudo apt install -y \
     xrandr \
     arandr \
     autorandr \
+    dunst \
+    udisks2 \
+    udiskie
 ```
 
 - kitty: kitty-0.42.2-x86_64
@@ -142,7 +146,7 @@ sudo apt update && sudo apt install -y \
 - xborder
 - auto-tiling
 - screenshots
-- notifications
+- notifications configuration
 
 ## DE
 
