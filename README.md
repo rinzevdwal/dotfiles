@@ -83,13 +83,17 @@ sudo apt update && sudo apt install -y \
     meson \
     ninja-build \
     libev-dev \
-    libxkbcommon-x11-dev \
     libpango1.0-dev \
     libstartup-notification0-dev \
     libxcb-cursor-dev \
+    libxcb-icccm4-dev \
     libxcb-keysyms1-dev \
+    libxcb-randr0-dev \
+    libxcb-shape0-dev \
+    libxcb-xinerama0-dev \
     libxcb-xrm-dev \
-    libyajl-dev \
+    libxkbcommon-x11-dev \
+    libyajl-dev
 ```
 
 ```sh
@@ -99,6 +103,14 @@ sudo apt update && sudo apt install -y \
     i3lock \
     asciidoc \
     i3status
+```
+
+```sh
+# i3 installation
+mkdir -p build && cd build
+meson setup
+ninja
+sudo ninja install
 ```
 
 - kitty: kitty-0.42.2-x86_64
