@@ -1,7 +1,8 @@
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock --i3lock-fancy --nofork
 exec --no-startup-id nm-applet
-exec --no-startup-id udiskie &
+exec --no-startup-id udiskie
+exec --no-startup-id picom -b
 exec_always --no-startup-id feh --bg-fill dotfiles/wallpapers/shaded_landscape.png
 exec_always --no-startup-id autorandr --load dual-monitor-desktop
 exec_always --no-startup-id dunst
