@@ -123,7 +123,8 @@ sudo apt update && sudo apt install -y \
     dunst \
     udisks2 \
     udiskie \
-    i3lock-fancy
+    i3lock-fancy \
+    flameshot
 ```
 
 - kitty: kitty-0.42.2-x86_64
@@ -139,21 +140,17 @@ sudo apt update && sudo apt install -y \
 - picom: github.com/yshui/picom 2025 dec 9
 - polybar: polybar-3.7.2
 - rofi: rofi-2.0.0
+- flameshot: v11.0.0
 
 ## TODO
 
 - i3 config / split up?
 - i3lock color
 - auto-tiling
-- screenshots
 - mouse layout
 - lock-screen
 
 ## DE
 
-- i3status
-- feh
-- i3lock-fancy
-- dmenu
 - nm-applet
 - pactl

@@ -34,6 +34,8 @@ bindsym $mod+space exec --no-startup-id rofi -show drun
 bindsym $mod+Shift+space exec --no-startup-id rofi -show run
 bindsym $mod+Tab exec --no-startup-id rofi -show window
 
+bindsym $mod+Print exec --no-startup-id flameshot launcher
+
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
