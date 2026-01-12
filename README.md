@@ -138,17 +138,14 @@ sudo apt update && sudo apt install -y \
 - fastfetch: fastfetch-linux-amd64 2.52.0
 - picom: github.com/yshui/picom 2025 dec 9
 - polybar: polybar-3.7.2
+- rofi: rofi-2.0.0
 
 ## TODO
 
 - i3 config / split up?
 - i3lock color
-- rofi
-- polybar
-- xborder
 - auto-tiling
 - screenshots
-- notifications configuration
 - mouse layout
 - lock-screen
 
