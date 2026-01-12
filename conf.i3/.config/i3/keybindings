@@ -161,10 +161,10 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # exit i3
-mode "exit: [l]ogout, [r]eboot, [s]hutdown" {
+mode "exit: [l]ogout, [r]eboot, [p]oweroff" {
         bindsym l exec i3-msg exit
         bindsym r exec systemctl reboot
-        bindsym s exec systemctl shutdown
+        bindsym p exec systemctl poweroff
 
          # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
@@ -172,7 +172,7 @@ mode "exit: [l]ogout, [r]eboot, [s]hutdown" {
         bindsym $mod+shift+e mode "default"
 }
 
-bindsym $mod+Shift+e mode "exit: [l]ogout, [r]eboot, [s]hutdown"
+bindsym $mod+Shift+e mode "exit: [l]ogout, [r]eboot, [p]oweroff"
 
 # copy and paste script for usb
 bindsym Control+$alt+c exec ~/scripts/clipboard/copy_to_usb.sh
