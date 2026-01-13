@@ -124,7 +124,8 @@ sudo apt update && sudo apt install -y \
     udisks2 \
     udiskie \
     lxappearance \
-    flameshot
+    flameshot \
+    papirus-icon-theme
 ```
 
 - kitty: kitty-0.42.2-x86_64
@@ -142,11 +143,12 @@ sudo apt update && sudo apt install -y \
 - rofi: rofi-2.0.0
 - flameshot: v11.0.0
 - i3lock-color: master Dec 12, 2025
+- autotiling: v1.9.3
 
 ## TODO
 
 - polybar islands
-- auto-tiling
+- power menu rofi
 
 ## DE
 
