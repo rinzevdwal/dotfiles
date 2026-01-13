@@ -123,6 +123,7 @@ sudo apt update && sudo apt install -y \
     dunst \
     udisks2 \
     udiskie \
+    lxappearance \
     flameshot
 ```
 
@@ -144,8 +145,8 @@ sudo apt update && sudo apt install -y \
 
 ## TODO
 
+- polybar islands
 - auto-tiling
-- mouse layout
 
 ## DE
 
