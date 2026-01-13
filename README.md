@@ -149,8 +149,3 @@ sudo apt update && sudo apt install -y \
 
 - polybar islands
 - power menu rofi
-
-## DE
-
-- nm-applet
-- pactl
