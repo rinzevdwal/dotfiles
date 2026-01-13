@@ -19,6 +19,7 @@ tiling_drag modifier titlebar
 
 # start a terminal
 bindsym $mod+Return exec kitty
+bindsym $mod+Shift+Return scratchpad show
 
 # kill focused window
 bindsym $mod+q kill

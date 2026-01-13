@@ -7,3 +7,5 @@ exec_always --no-startup-id feh --bg-fill dotfiles/wallpapers/shaded_landscape.p
 exec_always --no-startup-id autorandr --load dual-monitor-desktop
 exec_always --no-startup-id dunst
 exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id ~/.config/scripts/launch_by_class.sh scratch-terminal kitty
+for_window [class="scratch-terminal"] floating enable, move to scratchpad, resize set 1200 800
