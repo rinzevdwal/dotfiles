@@ -123,7 +123,6 @@ sudo apt update && sudo apt install -y \
     dunst \
     udisks2 \
     udiskie \
-    i3lock-fancy \
     flameshot
 ```
 
@@ -141,14 +140,12 @@ sudo apt update && sudo apt install -y \
 - polybar: polybar-3.7.2
 - rofi: rofi-2.0.0
 - flameshot: v11.0.0
+- i3lock-color: master Dec 12, 2025
 
 ## TODO
 
-- i3 config / split up?
-- i3lock color
 - auto-tiling
 - mouse layout
-- lock-screen
 
 ## DE
 
