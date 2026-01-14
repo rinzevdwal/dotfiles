@@ -36,7 +36,7 @@ client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
 client.background        $base
 
 gaps inner 10px
-gaps outer 0px
+gaps top 44px
 
 for_window [class="^.*"] border pixel 4
 

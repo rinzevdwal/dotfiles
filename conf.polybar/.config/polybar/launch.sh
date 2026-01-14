@@ -17,11 +17,18 @@ polybar --list-monitors | while read -r line; do
     
     # Check if the line contains the word "(primary)"
     if [[ $line == *"(primary)"* ]]; then
-        echo "--- Launching primary bar on $m ---"
-        MONITOR=$m polybar --reload main_bar &
+        echo "--- Launching bars + tray on $m ---"
+        MONITOR=$m polybar --reload bar_menu &
+        MONITOR=$m polybar --reload bar_i3 &
+        MONITOR=$m polybar --reload bar_date &
+        MONITOR=$m polybar --reload bar_stats &
+        MONITOR=$m polybar --reload bar_tray &
     else
-        echo "--- Launching secondary bar on $m ---"
-        MONITOR=$m polybar --reload secondary_bar &
+        echo "--- Launching bars on $m ---"
+        MONITOR=$m polybar --reload bar_menu &
+        MONITOR=$m polybar --reload bar_i3 &
+        MONITOR=$m polybar --reload bar_date &
+        MONITOR=$m polybar --reload bar_stats &
     fi
 done
 

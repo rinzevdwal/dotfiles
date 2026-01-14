@@ -144,7 +144,3 @@ sudo apt update && sudo apt install -y \
 - flameshot: v11.0.0
 - i3lock-color: master Dec 12, 2025
 - autotiling: v1.9.3
-
-## TODO
-
-- polybar islands
