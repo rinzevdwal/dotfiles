@@ -31,9 +31,10 @@ bindsym $mod+q kill
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+space exec --no-startup-id rofi -show drun
-bindsym $mod+Shift+space exec --no-startup-id rofi -show run
-bindsym $mod+Tab exec --no-startup-id rofi -show window
+set $rofi_theme_launcher ~/.config/rofi/launchers/type-1/style-5.rasi
+bindsym $mod+space exec --no-startup-id rofi -show drun -theme $rofi_theme_launcher
+bindsym $mod+Shift+space exec --no-startup-id rofi -show run -theme $rofi_theme_launcher
+bindsym $mod+Tab exec --no-startup-id rofi -show window -theme $rofi_theme_launcher
 
 bindsym $mod+Print exec --no-startup-id flameshot launcher
 

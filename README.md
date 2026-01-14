@@ -148,4 +148,3 @@ sudo apt update && sudo apt install -y \
 ## TODO
 
 - polybar islands
-- power menu rofi
