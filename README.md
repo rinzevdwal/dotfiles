@@ -138,6 +138,7 @@ sudo apt update && sudo apt install -y \
 - starship: starship-x86_64-unknown-linux-musl
 - btop: apt version
 - fastfetch: fastfetch-linux-amd64 2.52.0
+- i3: i3-4.25
 - picom: github.com/yshui/picom 2025 dec 9
 - polybar: polybar-3.7.2
 - rofi: rofi-2.0.0
