@@ -9,4 +9,4 @@ exec_always --no-startup-id dunst
 exec_always --no-startup-id autotiling
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id ~/.config/scripts/launch_by_class.sh scratch-terminal kitty
-for_window [class="scratch-terminal"] floating enable, move to scratchpad, resize set 1200 800, move position 680 320
+for_window [class="scratch-terminal"] move to workspace current, floating enable, resize set 1200 800, move position center, move to scratchpad
