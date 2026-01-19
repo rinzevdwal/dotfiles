@@ -95,13 +95,14 @@ case ${chosen} in
 		run_cmd --reboot
         ;;
     $lock)
-		if [[ -f "$HOME/.config/scripts/lock.sh" ]]; then
-			"$HOME/.config/scripts/lock.sh"
-		elif [[ -x '/usr/bin/betterlockscreen' ]]; then
-			betterlockscreen -l
-		elif [[ -x '/usr/bin/i3lock' ]]; then
-			i3lock
-		fi
+		xset s activate
+		# if [[ -f "$HOME/.config/scripts/lock.sh" ]]; then
+		# 	"$HOME/.config/scripts/lock.sh"
+		# elif [[ -x '/usr/bin/betterlockscreen' ]]; then
+		# 	betterlockscreen -l
+		# elif [[ -x '/usr/bin/i3lock' ]]; then
+		# 	i3lock
+		# fi
         ;;
     $suspend)
 		run_cmd --suspend
