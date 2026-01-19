@@ -1,9 +1,11 @@
 exec --no-startup-id dex --autostart --environment i3
 
 # Screen locking and power management
-# Dim the screen at 290 sec, lock the screen 10 sec later, at 330 sec turn the screen off.
-exec --no-startup-id xset s 290 10 
-exec --no-startup-id xset dmps 0 0 330
+# 290 sec : Dim screen
+# 300 sec : Turn screen off
+# 310 sec : Lock screen
+exec --no-startup-id xset s 290 20
+exec --no-startup-id xset dpms 0 0 300
 exec --no-startup-id xss-lock --notifier ~/.config/scripts/dim-screen.sh -- ~/.config/scripts/lock.sh
 
 exec --no-startup-id nm-applet
