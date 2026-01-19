@@ -4,9 +4,9 @@ exec --no-startup-id dex --autostart --environment i3
 # 300 sec : Dim screen
 # 320 sec : Lock screen
 # 600 sec : Turn screen off
-exec --no-startup-id xset s 300 20
-exec --no-startup-id xset dpms 0 600 600
-exec --no-startup-id xss-lock --notifier ~/.config/scripts/dim-screen.sh -- ~/.config/scripts/lock.sh
+exec_always --no-startup-id xset s 300 20
+exec_always --no-startup-id xset dpms 0 600 600
+exec_always --no-startup-id xss-lock --notifier ~/.config/scripts/dim-screen.sh -- ~/.config/scripts/lock.sh
 
 exec --no-startup-id nm-applet
 exec --no-startup-id udiskie --tray
