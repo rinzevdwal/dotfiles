@@ -4,10 +4,10 @@
 DIM_LEVEL=30
 
 # Fade duration in milliseconds
-FADE_DURATION=4000
+FADE_DURATION=10000
 
 # Number of steps for the fade
-STEPS=100
+STEPS=200
 
 # Get all connected outputs
 OUTPUTS=$(xrandr | grep " connected" | awk '{print $1}')

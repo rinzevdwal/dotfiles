@@ -35,3 +35,5 @@ i3lock \
 --indicator                  \
 --time-str="%H:%M:%S"        \
 --date-str="%Y-%m-%d"        \
+\
+--nofork                     \
