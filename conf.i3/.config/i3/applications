@@ -10,7 +10,7 @@ exec_always --no-startup-id xss-lock --notifier ~/.config/scripts/dim-screen.sh 
 
 exec --no-startup-id nm-applet
 exec --no-startup-id udiskie --tray
-exec --no-startup-id picom -b
+exec --no-startup-id picom --daemon
 
 exec_always --no-startup-id feh --bg-fill dotfiles/wallpapers/shaded_landscape.png
 exec_always --no-startup-id autorandr --change
