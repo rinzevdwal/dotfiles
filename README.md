@@ -35,6 +35,14 @@ cd ~/dotfiles
 stow -D <package>
 ```
 
+### Stow all
+
+```sh
+stow conf.*
+stow app.*
+stow fonts
+```
+
 ## Fonts
 
 ```sh
@@ -42,14 +50,53 @@ stow fonts
 fc-cache -fv # update the font cache.
 ```
 
-## bat
+## Applications
+
+```sh
+sudo apt update && sudo apt install -y \
+    xrandr \
+    arandr \
+    autorandr \
+    btop \
+    dunst \
+    fd-find \
+    feh \
+    flameshot \
+    lxappearance \
+    papirus-icon-theme \
+    udiskie \
+    udisks2 \
+    xclip \
+    shellcheck \
+    code
+```
+
+- kitty: kitty-0.42.2-x86_64
+- bat: bat-v0.25.0-x86_64-unknown-linux-musl
+- fzf: fzf-0.65.2-linux_amd64
+- lazygit: lazygit_0.55.0_linux_x86_64
+- lsd: lsd-v1.1.5-x86_64-unknown-linux-musl
+- ripgrep: ripgrep-14.1.1-x86_64-unknown-linux-musl
+- ripgrep-all: ripgrep_all-v0.10.10-x86_64-unknown-linux-musl
+- starship: starship-x86_64-unknown-linux-musl
+- btop: apt version
+- fastfetch: fastfetch-linux-amd64 2.52.0
+- i3: i3-4.25
+- picom: github.com/yshui/picom 2025 dec 9
+- polybar: polybar-3.7.2
+- rofi: rofi-2.0.0
+- flameshot: v11.0.0
+- i3lock-color: master Dec 12, 2025
+- autotiling: v1.9.3
+
+### bat
 
 ```sh
 stow conf.bat
 bat cache --build # rebuild bat's cache to load the theme
 ```
 
-## git
+### git
 
 ```sh
 stow conf.git
@@ -62,20 +109,14 @@ add to `~/.gitconfig`
     path = ~/.git_aliases
 ```
 
-## Application
-
-```sh
-sudo apt update && sudo apt install -y \
-    xclip \
-    btop \
-    feh \
-    fd-find \
-```
+### fd
 
 ```sh
 # symbolic link for fdfind to fd
 ln -s $(which fdfind) ~/.local/bin/fd
 ```
+
+### i3
 
 ```sh
 # i3 build dependencies
@@ -113,35 +154,80 @@ ninja
 sudo ninja install
 ```
 
+### i3lock-color
+
+Follow the installation in the `README.md` file.
+
+### picom
+
+Follow the installation in the `README.md` file.
+
+#### required libconfig-1.8.2
+
 ```sh
-# os tooling
-sudo apt update && sudo apt install -y \
-    feh \
-    xrandr \
-    arandr \
-    autorandr \
-    dunst \
-    udisks2 \
-    udiskie \
-    lxappearance \
-    flameshot \
-    papirus-icon-theme
+sudo apt install cmake
+mkdir build && cd build
+cmake ..
+make
+sudo make install
 ```
 
-- kitty: kitty-0.42.2-x86_64
-- bat: bat-v0.25.0-x86_64-unknown-linux-musl
-- fzf: fzf-0.65.2-linux_amd64
-- lazygit: lazygit_0.55.0_linux_x86_64
-- lsd: lsd-v1.1.5-x86_64-unknown-linux-musl
-- ripgrep: ripgrep-14.1.1-x86_64-unknown-linux-musl
-- ripgrep-all: ripgrep_all-v0.10.10-x86_64-unknown-linux-musl
-- starship: starship-x86_64-unknown-linux-musl
-- btop: apt version
-- fastfetch: fastfetch-linux-amd64 2.52.0
-- i3: i3-4.25
-- picom: github.com/yshui/picom 2025 dec 9
-- polybar: polybar-3.7.2
-- rofi: rofi-2.0.0
-- flameshot: v11.0.0
-- i3lock-color: master Dec 12, 2025
-- autotiling: v1.9.3
+### polybar
+
+### rofi
+
+```sh
+sudo apt update && sudo apt install -y \
+    libgdk-pixbuf2.0-dev \
+    libxcb-ewmh-dev
+```
+
+```sh
+meson setup -Dxcb=enabled build
+ninja -C build install
+```
+
+### vscode
+
+`~/.config/Code/User/settings.json`
+
+```sh
+{
+    "catppuccin.accentColor": "lavender",
+    "cmake.options.advanced": {
+        "build": {
+            "statusBarVisibility": "visible"
+        },
+        "cpack": {
+            "statusBarVisibility": "hidden"
+        },
+        "ctest": {
+            "statusBarVisibility": "icon"
+        },
+        "workflow": {
+            "statusBarVisibility": "hidden"
+        }
+    },
+    "cmake.options.statusBarVisibility": "compact",
+    "editor.fontFamily": "MesloLGSDZ Nerd Font",
+    "editor.minimap.size": "fill",
+    "editor.renderControlCharacters": true,
+    "editor.renderWhitespace": "all",
+    "editor.rulers": [
+        {
+            "color": "#8f8f8f2d",
+            "column": 120
+        }
+    ],
+    "editor.semanticHighlighting.enabled": true,
+    "explorer.confirmPasteNative": false,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "git.blame.editorDecoration.enabled": true,
+    "security.workspace.trust.untrustedFiles": "open",
+    "terminal.integrated.fontFamily": "MesloLGSDZ Nerd Font Mono",
+    "terminal.integrated.scrollback": 10000,
+    "workbench.colorTheme": "Catppuccin Mocha",
+    "workbench.iconTheme": "catppuccin-mocha",
+}
+```
