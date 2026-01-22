@@ -68,7 +68,9 @@ sudo apt update && sudo apt install -y \
     udisks2 \
     xclip \
     shellcheck \
-    code
+    code \
+    xrdp \
+    xorgxrdp
 ```
 
 - kitty: kitty-0.42.2-x86_64
