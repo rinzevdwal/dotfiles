@@ -54,7 +54,6 @@ fc-cache -fv # update the font cache.
 
 ```sh
 sudo apt update && sudo apt install -y \
-    xrandr \
     arandr \
     autorandr \
     btop \
