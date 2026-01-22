@@ -92,16 +92,13 @@ sudo apt update && sudo apt install -y \
 
 ### bat
 
+rebuild bat's cache to load the theme
+
 ```sh
-stow conf.bat
-bat cache --build # rebuild bat's cache to load the theme
+bat cache --build
 ```
 
 ### git
-
-```sh
-stow conf.git
-```
 
 add to `~/.gitconfig`
 
@@ -112,15 +109,17 @@ add to `~/.gitconfig`
 
 ### fd
 
+symbolic link for fdfind to fd
+
 ```sh
-# symbolic link for fdfind to fd
 ln -s $(which fdfind) ~/.local/bin/fd
 ```
 
 ### i3
 
+Dependencies
+
 ```sh
-# i3 build dependencies
 sudo apt update && sudo apt install -y \
     meson \
     ninja-build \
@@ -138,8 +137,9 @@ sudo apt update && sudo apt install -y \
     libyajl-dev
 ```
 
+Optional dependencies
+
 ```sh
-# optional i3 dependencies
 sudo apt update && sudo apt install -y \
     dmenu \
     i3lock \
@@ -147,8 +147,9 @@ sudo apt update && sudo apt install -y \
     i3status
 ```
 
+Install
+
 ```sh
-# i3 installation
 mkdir -p build && cd build
 meson setup
 ninja
@@ -164,6 +165,8 @@ Follow the installation in the `README.md` file.
 Follow the installation in the `README.md` file.
 
 #### required libconfig-1.8.2
+
+Install
 
 ```sh
 sudo apt install cmake
@@ -187,7 +190,7 @@ Optional Dependencies
 apt install libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev libpulse-dev libjsoncpp-dev libmpdclient-dev libcurl4-openssl-dev libnl-genl-3-dev
 ```
 
-building
+Install
 
 ```sh
 mkdir build
@@ -200,11 +203,15 @@ sudo make install
 
 ### rofi
 
+Dependencies
+
 ```sh
 sudo apt update && sudo apt install -y \
     libgdk-pixbuf2.0-dev \
     libxcb-ewmh-dev
 ```
+
+Install
 
 ```sh
 meson setup -Dxcb=enabled build
