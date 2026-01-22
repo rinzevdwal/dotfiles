@@ -50,6 +50,16 @@ stow fonts
 fc-cache -fv # update the font cache.
 ```
 
+## Theming
+
+use `lxappearance`
+
+Widget = Arc-Dark
+
+Icon Theme = Papirus-Dark
+
+Mouse Cursor = Catppuccin Mocha Dark
+
 ## Applications
 
 ```sh
@@ -63,6 +73,7 @@ sudo apt update && sudo apt install -y \
     flameshot \
     lxappearance \
     papirus-icon-theme \
+    arc-theme \
     udiskie \
     udisks2 \
     xclip \
