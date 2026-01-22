@@ -171,6 +171,14 @@ sudo ninja install
 
 Follow the installation in the `README.md` file.
 
+### i3 autotiling
+
+Dependencies
+
+```sh
+pip install i3ipc
+```
+
 ### picom
 
 Follow the installation in the `README.md` file.
