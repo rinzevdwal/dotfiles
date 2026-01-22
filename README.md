@@ -253,5 +253,6 @@ ninja -C build install
     "terminal.integrated.scrollback": 10000,
     "workbench.colorTheme": "Catppuccin Mocha",
     "workbench.iconTheme": "catppuccin-mocha",
+    "workbench.secondarySideBar.defaultVisibility": "hidden",
 }
 ```
