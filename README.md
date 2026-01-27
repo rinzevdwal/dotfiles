@@ -83,6 +83,10 @@ sudo apt update && sudo apt install -y \
     xorgxrdp
 ```
 
+```sh
+pip3 install thefuck --user
+```
+
 - kitty: kitty-0.42.2-x86_64
 - bat: bat-v0.25.0-x86_64-unknown-linux-musl
 - fzf: fzf-0.65.2-linux_amd64

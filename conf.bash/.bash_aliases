@@ -23,3 +23,7 @@ fi
 if which fastfetch >/dev/null; then
     alias fetch='fastfetch'
 fi
+
+if which thefuck >/dev/null; then
+    eval "$(thefuck --alias)"
+fi
