@@ -4,10 +4,10 @@
         "source": "~/.config/fastfetch/cat_terminal.png",
         "type": "kitty-icat",
         "height": 16,
-        "width": 30,
+        "width": 23,
         "padding": {
-            "top": 2,
-            "left": 2
+            "top": 4,
+            "left": 1
         }
     },
     "display": {
