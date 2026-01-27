@@ -171,3 +171,8 @@ if which fzf >/dev/null; then
         . ~/.config/fzf/config.sh
     fi
 fi
+
+# print fastfetch
+if which fastfetch >/dev/null; then
+    fastfetch
+fi
