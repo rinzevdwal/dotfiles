@@ -18,7 +18,7 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+Return scratchpad show
 
 # kill focused window
