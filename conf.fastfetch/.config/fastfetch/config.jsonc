@@ -30,7 +30,8 @@
         "break",
         {
             "type": "os",
-            "key": " "
+            "key": " ",
+            "format": "{3:18}"
         },
         {
             "type": "kernel",
