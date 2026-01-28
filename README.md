@@ -96,7 +96,7 @@ pip3 install thefuck --user
 - ripgrep-all: ripgrep_all-v0.10.10-x86_64-unknown-linux-musl
 - starship: starship-x86_64-unknown-linux-musl
 - btop: apt version
-- fastfetch: fastfetch-linux-amd64 2.52.0
+- fastfetch: fastfetch-linux-amd64 2.58.0
 - i3: i3-4.25
 - picom: github.com/yshui/picom 2025 dec 9
 - polybar: polybar-3.7.2
