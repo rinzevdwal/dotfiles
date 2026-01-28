@@ -174,5 +174,9 @@ fi
 
 # print fastfetch
 if which fastfetch >/dev/null; then
-    fastfetch
+    if [ $TERM = "xterm-kitty" ]; then
+        fastfetch
+    else
+        fastfetch  --logo-type builtin --logo-padding-top 6 --logo Linux_small
+    fi
 fi
