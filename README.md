@@ -2,6 +2,10 @@
 
 My dotfiles managed by gnu stow.
 
+![screenshot1](images/screenshot1.png)
+![screenshot2](images/screenshot2.png)
+![screenshot3](images/screenshot3.png)
+
 ## Preconditions
 
 Create some folder to prevent them being symlinked for other application.
@@ -21,20 +25,6 @@ mkdir -p ~/.local/share/icons
 sudo apt Install stow
 ```
 
-### Stow package
-
-```sh
-cd ~/dotfiles
-stow <package>
-```
-
-### Unstow package
-
-```sh
-cd ~/dotfiles
-stow -D <package>
-```
-
 ### Stow all
 
 ```sh
@@ -52,13 +42,23 @@ fc-cache -fv # update the font cache.
 
 ## Theming
 
-use `lxappearance`
+Use `lxappearance`
 
 Widget = Arc-Dark
 
 Icon Theme = Papirus-Dark
 
 Mouse Cursor = Catppuccin Mocha Dark
+
+## Monitors
+
+Use `ARandR` to configure the monitor(s).
+Then save the configuration using `autorandr`.
+The configuration will be automatically selected based on the connected devices.
+
+```sh
+autorandr --save <profile>
+```
 
 ## Applications
 
