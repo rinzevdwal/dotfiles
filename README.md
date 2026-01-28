@@ -286,3 +286,18 @@ ninja -C build install
     "workbench.secondarySideBar.defaultVisibility": "hidden",
 }
 ```
+
+### Fun terminal applications
+
+```sh
+sudo apt update && sudo apt install -y \
+    cmatrix \
+    cbonsai \
+    tty-clock \
+    cowsay \
+    lolcat \
+    fortune
+```
+
+- pipes.sh (installed using stow)
+- cowthink (installed with cowsay)
