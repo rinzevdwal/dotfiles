@@ -247,6 +247,8 @@ ninja -C build install
 
 ### vscode
 
+#### config
+
 `~/.config/Code/User/settings.json`
 
 ```sh
@@ -290,6 +292,15 @@ ninja -C build install
     "workbench.secondarySideBar.defaultVisibility": "hidden",
 }
 ```
+
+#### extensions
+
+- Catppuccin.catppuccin-vsc
+- Catppuccin.catppuccin-vsc-icons
+- DavidAnson.vscode-markdownlint
+- streetsidesoftware.code-spell-checker
+- ms-vscode.cmake-tools
+- ms-vscode.cpptools
 
 ### Fun terminal applications
 
