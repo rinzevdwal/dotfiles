@@ -105,6 +105,7 @@ pip3 install thefuck --user
 - flameshot: v11.0.0
 - i3lock-color: master Dec 12, 2025
 - autotiling: v1.9.3
+- yazi: yazi-x86_64-unknown-linux-musl 25.5.31
 
 ### bat
 
