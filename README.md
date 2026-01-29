@@ -81,7 +81,8 @@ sudo apt update && sudo apt install -y \
     code \
     xrdp \
     xorgxrdp \
-    duf
+    duf \
+    keychain
 ```
 
 ```sh

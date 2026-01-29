@@ -12,3 +12,8 @@ fi
 if [ -f "$HOME/.bashrc" ]; then
     . "$HOME/.bashrc"
 fi
+
+# Start ssh agent and load private key
+if which keychain >/dev/null; then
+    eval "$(keychain --quiet --eval id_ed25519)"
+fi
