@@ -16,14 +16,17 @@ if which lsd >/dev/null; then
     alias l='lsd -F'
 fi
 
+# Use bat instead of cat, in the style for cat
 if which bat >/dev/null; then
     alias cat='bat -pp'
 fi
 
+# Alias fetch for fastfetch
 if which fastfetch >/dev/null; then
     alias fetch='fastfetch'
 fi
 
+# Alias fuck for the fuck
 if which thefuck >/dev/null; then
     eval "$(thefuck --alias)"
 fi
