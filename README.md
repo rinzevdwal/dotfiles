@@ -80,7 +80,8 @@ sudo apt update && sudo apt install -y \
     shellcheck \
     code \
     xrdp \
-    xorgxrdp
+    xorgxrdp \
+    duf
 ```
 
 ```sh
