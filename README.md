@@ -82,7 +82,8 @@ sudo apt update && sudo apt install -y \
     xrdp \
     xorgxrdp \
     duf \
-    keychain
+    keychain \
+    policykit-1-gnome
 ```
 
 ```sh
