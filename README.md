@@ -108,6 +108,7 @@ pip3 install thefuck --user
 - i3lock-color: master Dec 12, 2025
 - autotiling: v1.9.3
 - yazi: yazi-x86_64-unknown-linux-musl 25.5.31
+- delta: delta-0.18.2-x86_64-unknown-linux-musl
 
 ### bat
 
