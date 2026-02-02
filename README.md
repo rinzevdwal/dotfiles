@@ -93,7 +93,7 @@ pip3 install thefuck --user
 - kitty: kitty-0.42.2-x86_64
 - bat: bat-v0.25.0-x86_64-unknown-linux-musl
 - fzf: fzf-0.65.2-linux_amd64
-- lazygit: lazygit_0.55.0_linux_x86_64
+- lazygit: lazygit_0.58.1_linux_x86_64
 - lsd: lsd-v1.1.5-x86_64-unknown-linux-musl
 - ripgrep: ripgrep-14.1.1-x86_64-unknown-linux-musl
 - ripgrep-all: ripgrep_all-v0.10.10-x86_64-unknown-linux-musl
