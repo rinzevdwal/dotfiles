@@ -12,4 +12,4 @@
     line-numbers = true
 
 [merge]
-    conflictStyle = zdiff3
+    conflictStyle = diff3
