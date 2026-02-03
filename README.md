@@ -1,6 +1,7 @@
-# Dotfiles
+# Dotfiles I3 Catppuccin
 
 My dotfiles managed by gnu stow.
+Using I3 and Catppuccin theme.
 
 ![Wallpaper](images/screenshot-wallpaper.png)
 ![Floating](images/screenshot-floating.png)
