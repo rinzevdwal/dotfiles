@@ -128,8 +128,14 @@ bat cache --build
 add to `~/.gitconfig`
 
 ```sh
+[core]
+    editor = code --wait
+[user]
+    name = <user_name>
+    email = <user_email>
 [include]
     path = ~/.git_aliases
+    path = ~/.config/delta/delta.gitconfig
 ```
 
 ### fd
