@@ -21,4 +21,12 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 # Create scratch pad terminal
 exec_always --no-startup-id ~/.config/scripts/launch_by_class.sh scratch-terminal kitty
-for_window [class="scratch-terminal"] move to workspace current, floating enable, resize set 1200 800, move position center, move to scratchpad
+for_window [class="scratch-terminal"] move to workspace current, \
+                                     floating enable, \
+                                     resize set 1200 800, \
+                                     move position center, \
+                                     move to scratchpad
+
+# Custom dialog pop-ups windows
+for_window [title="MULTI Choice Dialog"] floating enable, move position center
+for_window [title="Initializing Target"] floating enable, move position center
