@@ -2,9 +2,14 @@
 
 My dotfiles managed by gnu stow.
 
-![screenshot1](images/screenshot1.png)
-![screenshot2](images/screenshot2.png)
-![screenshot3](images/screenshot3.png)
+![Wallpaper](images/screenshot-wallpaper.png)
+![Floating](images/screenshot-floating.png)
+![Tiled](images/screenshot-tiled.png)
+![Scratch board](images/screenshot-scratch-board.png)
+![powermenu](images/screenshot-rofi-powermenu.png)
+![drun](images/screenshot-rofi-drun.png)
+![Lazygit & Vim & yazi](images/screenshot-lazygit-vim-yazi.png)
+![vscode](images/screenshot-vscode.png)
 
 ## Preconditions
 
