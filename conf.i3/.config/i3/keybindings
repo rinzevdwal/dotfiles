@@ -18,7 +18,6 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # Don't move to mouse when switching to another output.
-mouse_warping none
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
