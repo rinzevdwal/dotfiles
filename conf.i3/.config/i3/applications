@@ -30,3 +30,4 @@ for_window [class="scratch-terminal"] move to workspace current, \
 # Custom dialog pop-ups windows
 for_window [title="MULTI Choice Dialog"] floating enable, move position center
 for_window [title="Initializing Target"] floating enable, move position center
+for_window [title="Incoherency Detected"] floating enable, move position center
