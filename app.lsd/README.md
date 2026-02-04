@@ -1,33 +1,32 @@
 <div align="center">
+   <sup>Special thanks to:</sup>
+   <br>
+   <br>
+   <a href="https://go.warp.dev/lsd">
+      <img alt="Warp sponsorship" width="400" src="https://raw.githubusercontent.com/warpdotdev/brand-assets/refs/heads/main/Github/Sponsor/Warp-Github-LG-02.png">
+   </a>
 
-<p>
-  <sup>
-    <a href="https://github.com/sponsors/zwpaper">LSD is supported by the community.</a>
-  </sup>
-</p>
-<sup>Special thanks to:</sup>
-<br>
-<br>
-<a href="https://www.warp.dev/?utm_source=github&utm_medium=referral&utm_campaign=lsd_20231001">
-<div>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/lsd-rs/lsd/assets/3764335/61c7471f-ade1-42ea-9829-ac381c92b28a">
-    <source media="(prefers-color-scheme: light)" srcset="https://github.com/lsd-rs/lsd/assets/3764335/40e5d173-603c-45c8-90fa-50ba6c48a813">
-    <img alt="Warp" width="230" src="https://github.com/lsd-rs/lsd/assets/3764335/40e5d173-603c-45c8-90fa-50ba6c48a813">
-  </picture>
-</div>
-  <b>Warp is a blazingly fast, Rust-based terminal reimagined to work like a modern app.</b>
-  <div>
-    <sup>Get more done in the CLI with real text editing, block-based output, and AI command search.</sup>
-  </div>
-</a>
-<hr>
+### [Warp, built for coding with multiple AI agents](https://go.warp.dev/lsd)
+[Available for MacOS, Linux, & Windows](https://go.warp.dev/lsd)<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+   <sup>Maintained with ❤️ + 🤖 by Pochi</sup>
+   <br>
+   <br>
+   <a href="https://app.getpochi.com">
+      <img alt="Pochi AI Coding Assistant" width="160" src="https://github.com/TabbyML/pochi/blob/main/packages/vscode/assets/icons/logo128.png?raw=true">
+   </a>
+
+### [Pochi is an AI agent designed for software development.](https://app.getpochi.com)
+[It operates within your IDE, using a toolkit of commands to write and refactor code autonomously across your entire project.](https://app.getpochi.com)<br>
+
 </div>
 
 **IMPORTANT**: This is the development documents,
 please check the docs in [Tags](https://github.com/lsd-rs/lsd/tags) if you installed from the released ones.
 
-The current newest release is: [v1.1.5](https://github.com/lsd-rs/lsd/tree/v1.1.5)
+The current newest release is: [v1.2.0](https://github.com/lsd-rs/lsd/tree/v1.2.0)
 
 ---
 

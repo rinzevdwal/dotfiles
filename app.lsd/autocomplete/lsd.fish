@@ -1,16 +1,44 @@
-complete -c lsd -l color -d 'When to use terminal colours [default: auto]' -r -f -a "{always	'',auto	'',never	''}"
-complete -c lsd -l icon -d 'When to print the icons [default: auto]' -r -f -a "{always	'',auto	'',never	''}"
-complete -c lsd -l icon-theme -d 'Whether to use fancy or unicode icons [default: fancy]' -r -f -a "{fancy	'',unicode	''}"
+complete -c lsd -l color -d 'When to use terminal colours [default: auto]' -r -f -a "always\t''
+auto\t''
+never\t''"
+complete -c lsd -l icon -d 'When to print the icons [default: auto]' -r -f -a "always\t''
+auto\t''
+never\t''"
+complete -c lsd -l icon-theme -d 'Whether to use fancy or unicode icons [default: fancy]' -r -f -a "fancy\t''
+unicode\t''"
 complete -c lsd -l config-file -d 'Provide a custom lsd configuration file' -r -F
 complete -c lsd -l depth -d 'Stop recursing into directories after reaching specified depth' -r
-complete -c lsd -l permission -d 'How to display permissions [default: rwx for linux, attributes for windows]' -r -f -a "{rwx	'',octal	'',attributes	'',disable	''}"
-complete -c lsd -l size -d 'How to display size [default: default]' -r -f -a "{default	'',short	'',bytes	''}"
+complete -c lsd -l permission -d 'How to display permissions [default: rwx for linux, attributes for windows]' -r -f -a "rwx\t''
+octal\t''
+attributes\t''
+disable\t''"
+complete -c lsd -l size -d 'How to display size [default: default]' -r -f -a "default\t''
+short\t''
+bytes\t''"
 complete -c lsd -l date -d 'How to display date [default: date] [possible values: date, locale, relative, +date-time-format]' -r
-complete -c lsd -l sort -d 'Sort by TYPE instead of name' -r -f -a "{size	'',time	'',version	'',extension	'',git	'',none	''}"
-complete -c lsd -l group-dirs -d 'Sort the directories then the files' -r -f -a "{none	'',first	'',last	''}"
-complete -c lsd -l blocks -d 'Specify the blocks that will be displayed and in what order' -r -f -a "{permission	'',user	'',group	'',context	'',size	'',date	'',name	'',inode	'',links	'',git	''}"
+complete -c lsd -l sort -d 'Sort by TYPE instead of name' -r -f -a "size\t''
+time\t''
+version\t''
+extension\t''
+git\t''
+none\t''"
+complete -c lsd -l group-dirs -d 'Sort the directories then the files' -r -f -a "none\t''
+first\t''
+last\t''"
+complete -c lsd -l blocks -d 'Specify the blocks that will be displayed and in what order' -r -f -a "permission\t''
+user\t''
+group\t''
+context\t''
+size\t''
+date\t''
+name\t''
+inode\t''
+links\t''
+git\t''"
 complete -c lsd -s I -l ignore-glob -d 'Do not display files/directories with names matching the glob pattern(s). More than one can be specified by repeating the argument' -r
-complete -c lsd -l hyperlink -d 'Attach hyperlink to filenames [default: never]' -r -f -a "{always	'',auto	'',never	''}"
+complete -c lsd -l hyperlink -d 'Attach hyperlink to filenames [default: never]' -r -f -a "always\t''
+auto\t''
+never\t''"
 complete -c lsd -l truncate-owner-after -d 'Truncate the user and group names if they exceed a certain number of characters' -r
 complete -c lsd -l truncate-owner-marker -d 'Truncation marker appended to a truncated user or group name' -r
 complete -c lsd -s a -l all -d 'Do not ignore entries starting with . '
