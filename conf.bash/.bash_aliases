@@ -14,6 +14,7 @@ if which lsd >/dev/null; then
     alias ll='lsd -alFg'
     alias la='lsd -aF'
     alias l='lsd -F'
+    alias lt='lsd -F --tree'
 fi
 
 # Use bat instead of cat, in the style for cat
