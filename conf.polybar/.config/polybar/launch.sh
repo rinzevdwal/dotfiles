@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+LOCKFILE="/tmp/$(basename "$0").$UID.lock"
+exec {LOCK_FD}<>"$LOCKFILE"
+if ! flock -n "$LOCK_FD"; then
+    echo "Error: Another instance of $(basename "$0") is already running." >&2
+    exit 1
+fi
+
 # Terminate already running bar instances
 killall -q polybar
 
