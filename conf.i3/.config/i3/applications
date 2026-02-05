@@ -13,11 +13,11 @@ exec --no-startup-id udiskie --tray
 exec --no-startup-id ~/.config/picom/launch.sh
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 
-exec_always --no-startup-id feh --bg-fill dotfiles/wallpapers/shaded-landscape.png
 exec_always --no-startup-id autorandr --change
+exec_always --no-startup-id feh --bg-fill dotfiles/wallpapers/shaded-landscape.png
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id dunst
 exec_always --no-startup-id autotiling
-exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 # Create scratch pad terminal
 exec_always --no-startup-id ~/.config/scripts/launch_by_class.sh scratch-terminal kitty
