@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Usage: ./launch_check.sh <TARGET_CLASS> <COMMAND>
 # Example: ./launch_check.sh "code" "code"

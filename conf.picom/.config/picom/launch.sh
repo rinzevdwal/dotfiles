@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Check if a xrdp session is running
 # if not then start picom else don't start picom
