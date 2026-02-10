@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
-~/.config/polybar/launch.sh
-
+if [ -x ~/.config/polybar/launch.sh ]; then
+    ~/.config/polybar/launch.sh
+fi
