@@ -11,7 +11,7 @@ exec_always --no-startup-id xss-lock --notifier ~/.config/scripts/dim-screen.sh 
 exec --no-startup-id nm-applet
 exec --no-startup-id udiskie --tray
 exec --no-startup-id ~/.config/picom/launch.sh
-exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 
 exec_always --no-startup-id autorandr --change --force
 exec_always --no-startup-id feh --bg-fill dotfiles/wallpapers/shaded-landscape.png
