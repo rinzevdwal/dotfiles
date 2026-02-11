@@ -13,7 +13,7 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 polybar --list-monitors | while read -r line; do
     # Extract the monitor name (everything before the colon)
-    m=$(echo $line | cut -d":" -f1)
+    m=$(echo "$line" | cut -d":" -f1)
     
     # Check if the line contains the word "(primary)"
     if [[ $line == *"(primary)"* ]]; then
