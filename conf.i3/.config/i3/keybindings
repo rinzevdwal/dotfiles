@@ -133,6 +133,8 @@ bindsym $mod+Shift+comma move container to workspace prev; workspace prev
 
 # move the whole workspace to the next output
 bindsym $mod+m move workspace to output next
+# swap active workspaces on output
+bindsym $mod+shift+m exec ~/.config/i3/i3-display-swap.sh
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
