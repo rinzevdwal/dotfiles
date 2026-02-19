@@ -6,7 +6,7 @@ exec --no-startup-id dex --autostart --environment i3
 # 1200 sec : Turn screen off
 exec_always --no-startup-id xset s 900 30
 exec_always --no-startup-id xset dpms 0 1200 1200
-exec_always --no-startup-id xss-lock --notifier ~/.config/scripts/dim-screen.sh -- ~/.config/scripts/lock.sh
+exec_always --no-startup-id xss-lock --notifier ~/.config/i3/scripts/dim-screen.sh -- ~/.config/i3/scripts/lock.sh
 
 exec --no-startup-id nm-applet
 exec --no-startup-id udiskie --tray
@@ -19,7 +19,7 @@ exec_always --no-startup-id dunst
 exec_always --no-startup-id autotiling
 
 # Create scratch pad terminal
-exec_always --no-startup-id ~/.config/scripts/launch_by_class.sh scratch-terminal kitty
+exec_always --no-startup-id ~/.config/i3/scripts/launch_by_class.sh scratch-terminal kitty
 for_window [class="scratch-terminal"] move to workspace current, \
                                      floating enable, \
                                      resize set 1200 800, \
