@@ -4,10 +4,12 @@ set $ctrl Control
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume    exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume    exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute           exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+
+bindsym XF86AudioRaiseVolume    exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%     && $refresh_i3status
+bindsym XF86AudioLowerVolume    exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%     && $refresh_i3status
+bindsym XF86AudioMute           exec --no-startup-id pactl set-sink-mute   @DEFAULT_SINK@ toggle   && $refresh_i3status
 bindsym XF86AudioMicMute        exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
 bindsym XF86MonBrightnessUp     exec --no-startup-id brightnessctl set +5%
 bindsym XF86MonBrightnessDown   exec --no-startup-id brightnessctl set 5%-
 
@@ -27,9 +29,9 @@ bindsym $mod+q                  kill
 
 # start dmenu (a program launcher)
 set $rofi_theme_launcher ~/.config/rofi/launchers/type-1/style-5.rasi
-bindsym $mod+space              exec --no-startup-id rofi -show drun -theme $rofi_theme_launcher
-bindsym $mod+Shift+space        exec --no-startup-id rofi -show run -theme $rofi_theme_launcher
-bindsym $mod+Tab                exec --no-startup-id rofi -show window -theme $rofi_theme_launcher
+bindsym $mod+space              exec --no-startup-id rofi -show drun    -theme $rofi_theme_launcher
+bindsym $mod+Shift+space        exec --no-startup-id rofi -show run     -theme $rofi_theme_launcher
+bindsym $mod+Tab                exec --no-startup-id rofi -show window  -theme $rofi_theme_launcher
 
 bindsym $mod+Print              exec --no-startup-id flameshot launcher
 
@@ -46,16 +48,16 @@ bindsym $mod+Up                 focus up
 bindsym $mod+Right              focus right
 
 # move focused window
-bindsym $mod+$ctrl+j            move left 50 px
-bindsym $mod+$ctrl+k            move down 50 px
-bindsym $mod+$ctrl+l            move up 50 px
-bindsym $mod+$ctrl+semicolon    move right 50 px
+bindsym $mod+$ctrl+j            move left       50 px
+bindsym $mod+$ctrl+k            move down       50 px
+bindsym $mod+$ctrl+l            move up         50 px
+bindsym $mod+$ctrl+semicolon    move right      50 px
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+$ctrl+Left         move left 50 px
-bindsym $mod+$ctrl+Down         move down 50 px
-bindsym $mod+$ctrl+Up           move up 50 px
-bindsym $mod+$ctrl+Right        move right 50 px
+bindsym $mod+$ctrl+Left         move left       50 px
+bindsym $mod+$ctrl+Down         move down       50 px
+bindsym $mod+$ctrl+Up           move up         50 px
+bindsym $mod+$ctrl+Right        move right      50 px
 
 # swap container variable for a cleaner config file
 set $swap_container_with_swapee swap container with mark swapee; \
@@ -125,18 +127,18 @@ bindsym $mod+period             workspace next
 bindsym $mod+comma              workspace prev
 
 # move focused container to workspace
-bindsym $mod+Shift+1            move container to workspace number $ws1; workspace number $ws1
-bindsym $mod+Shift+2            move container to workspace number $ws2; workspace number $ws2
-bindsym $mod+Shift+3            move container to workspace number $ws3; workspace number $ws3
-bindsym $mod+Shift+4            move container to workspace number $ws4; workspace number $ws4
-bindsym $mod+Shift+5            move container to workspace number $ws5; workspace number $ws5
-bindsym $mod+Shift+6            move container to workspace number $ws6; workspace number $ws6
-bindsym $mod+Shift+7            move container to workspace number $ws7; workspace number $ws7
-bindsym $mod+Shift+8            move container to workspace number $ws8; workspace number $ws8
-bindsym $mod+Shift+9            move container to workspace number $ws9; workspace number $ws9
-bindsym $mod+Shift+0            move container to workspace number $ws10; workspace number $ws10
-bindsym $mod+Shift+period       move container to workspace next; workspace next
-bindsym $mod+Shift+comma        move container to workspace prev; workspace prev
+bindsym $mod+Shift+1            move container to workspace number $ws1;        workspace number $ws1
+bindsym $mod+Shift+2            move container to workspace number $ws2;        workspace number $ws2
+bindsym $mod+Shift+3            move container to workspace number $ws3;        workspace number $ws3
+bindsym $mod+Shift+4            move container to workspace number $ws4;        workspace number $ws4
+bindsym $mod+Shift+5            move container to workspace number $ws5;        workspace number $ws5
+bindsym $mod+Shift+6            move container to workspace number $ws6;        workspace number $ws6
+bindsym $mod+Shift+7            move container to workspace number $ws7;        workspace number $ws7
+bindsym $mod+Shift+8            move container to workspace number $ws8;        workspace number $ws8
+bindsym $mod+Shift+9            move container to workspace number $ws9;        workspace number $ws9
+bindsym $mod+Shift+0            move container to workspace number $ws10;       workspace number $ws10
+bindsym $mod+Shift+period       move container to workspace next;               workspace next
+bindsym $mod+Shift+comma        move container to workspace prev;               workspace prev
 
 # move the whole workspace to the next output
 bindsym $mod+m move             workspace to output next
@@ -161,16 +163,16 @@ mode "resize" {
         # Pressing right will grow the window's width.
         # Pressing up will shrink the window's height.
         # Pressing down will grow the window's height.
-        bindsym j               resize shrink width 50 px or 10 ppt
-        bindsym k               resize grow height 50 px or 10 ppt
-        bindsym l               resize shrink height 50 px or 10 ppt
-        bindsym semicolon       resize grow width 50 px or 10 ppt
+        bindsym j               resize shrink width     50 px or 10 ppt
+        bindsym k               resize grow height      50 px or 10 ppt
+        bindsym l               resize shrink height    50 px or 10 ppt
+        bindsym semicolon       resize grow width       50 px or 10 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left            resize shrink width 50 px or 10 ppt
-        bindsym Down            resize grow height 50 px or 10 ppt
-        bindsym Up              resize shrink height 50 px or 10 ppt
-        bindsym Right           resize grow width 50 px or 10 ppt
+        bindsym Left            resize shrink width     50 px or 10 ppt
+        bindsym Down            resize grow height      50 px or 10 ppt
+        bindsym Up              resize shrink height    50 px or 10 ppt
+        bindsym Right           resize grow width       50 px or 10 ppt
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return          mode "default"
