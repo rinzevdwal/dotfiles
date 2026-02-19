@@ -1,13 +1,8 @@
-# Keybindings
+# Keybindings i3
 
-## i3
+## Moving Around
 
-### Moving Around
-
-| direction | left | down | up | right |
-| - | - | - | - | - |
-| vim like | `j` | `k` | `l` | `;` |
-| arrows | `` | `` | `` | `` |
+direction = arrows/`j`,`k`,`l`,`;`
 
 | keys | function |
 | - | - |
@@ -17,7 +12,7 @@
 | `mod`+`a` | focus parent |
 | `mod`+`d` | focus child |
 
-### Workspaces
+## Workspaces
 
 | keys | function |
 | - | - |
@@ -28,7 +23,7 @@
 | `mod`+`m` | move workspace to next output |
 | `mod`+`shift`+`m` | swap workspaces on output |
 
-### Applications
+## Applications
 
 | keys | function |
 | - | - |
@@ -40,7 +35,7 @@
 | `mod`+`tab` | switch window |
 | `mod`+`print` | run screenshot app |
 
-### Container modes
+## Container modes
 
 | keys | function |
 | - | - |
@@ -54,7 +49,7 @@
 | `mod`+`t` | toggle focus floating |
 | `mod`+`shift`+`t` | toggle floating |
 
-### Session i3
+## Session i3
 
 | keys | function |
 | - | - |
@@ -62,8 +57,9 @@
 | `mod`+`shift`+`e` | power menu |
 | `mod`+`shift`+`r` | restart i3 |
 | `mod`+`shift`+`c` | reload i3 config |
+| `mod`+`shift`+`?` | show this cheat sheet |
 
-### Mouse
+## Mouse
 
 | keys | function |
 | - | - |

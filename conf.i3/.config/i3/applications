@@ -26,6 +26,11 @@ for_window [class="scratch-terminal"] move to workspace current, \
                                      move position center, \
                                      move to scratchpad
 
+# Rules for i3 cheat sheet
+for_window [class="Zathura" title="/tmp/i3/cheat-sheet/keybindings.pdf"]    floating enable, \
+                                                                            resize set 1200 850, \
+                                                                            move position center
+
 # Custom dialog pop-ups windows
 for_window [title="MULTI Choice Dialog"] floating enable, move position center
 for_window [title="Initializing Target"] floating enable, move position center

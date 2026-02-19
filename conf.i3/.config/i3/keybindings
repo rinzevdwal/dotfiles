@@ -179,8 +179,10 @@ mode "resize" {
         bindsym Escape          mode "default"
         bindsym $mod+r          mode "default"
 }
-
 bindsym $mod+r                  mode "resize"
+
+# show keybindings cheat-sheet
+bindsym $mod+Shift+question exec ~/.config/i3/cheat-sheet/launch.sh
 
 # copy and paste script for usb
 bindsym Control+$alt+c          exec ~/scripts/clipboard/copy_to_usb.sh

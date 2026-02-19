@@ -1,0 +1,45 @@
+@page {
+    margin: 0;
+    padding: 0;
+    size: auto;
+}
+
+body {
+    background-color: #1e1e2e; /* Base */
+    color: #cdd6f4;            /* Text */
+    font-family: 'MesloLGSDZ Nerd Font';
+    line-height: 1.6;
+    padding: 24px;
+}
+
+h1, h2, h3 { color: #89b4fa; } /* Blue Accent */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+    background-color: #181825; /* Mantle */
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th {
+    background-color: #313244; /* Surface0 */
+    color: #f5e0dc;            /* Rosewater */
+    font-weight: bold;
+    text-align: left;
+    padding: 8px;
+    border-bottom: 2px solid #45475a; /* Surface1 */
+}
+
+td {
+    padding: 2px;
+}
+
+code {
+    background-color: #313244; /* Surface0 */
+    color: #fab387;            /* Peach */
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'MesloLGSDZ Nerd Font Mono', monospace;
+}

@@ -89,7 +89,9 @@ sudo apt update && sudo apt install -y \
     xorgxrdp \
     duf \
     keychain \
-    policykit-1-gnome
+    policykit-1-gnome \
+    weasyprint \
+    zathura
 ```
 
 ```sh
