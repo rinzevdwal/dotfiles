@@ -76,6 +76,18 @@ bindsym $mod+Shift+Down         mark --add swapee; focus down;  $swap_container_
 bindsym $mod+Shift+Up           mark --add swapee; focus up;    $swap_container_with_swapee
 bindsym $mod+Shift+Right        mark --add swapee; focus right; $swap_container_with_swapee
 
+# resize container
+bindsym $mod+$alt+j             resize shrink width     50 px or 10 ppt
+bindsym $mod+$alt+k             resize grow height      50 px or 10 ppt
+bindsym $mod+$alt+l             resize shrink height    50 px or 10 ppt
+bindsym $mod+$alt+semicolon     resize grow width       50 px or 10 ppt
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+$alt+Left          resize shrink width     50 px or 10 ppt
+bindsym $mod+$alt+Down          resize grow height      50 px or 10 ppt
+bindsym $mod+$alt+Up            resize shrink height    50 px or 10 ppt
+bindsym $mod+$alt+Right         resize grow width       50 px or 10 ppt
+
 # split in horizontal orientation
 bindsym $mod+h                  split h
 # split in vertical orientation
@@ -154,32 +166,6 @@ bindsym $mod+Shift+r            restart
 bindsym $mod+x                  exec --no-startup-id xset s activate
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e            exec ~/.config/rofi/scripts/powermenu_t1
-
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window's width.
-        # Pressing right will grow the window's width.
-        # Pressing up will shrink the window's height.
-        # Pressing down will grow the window's height.
-        bindsym j               resize shrink width     50 px or 10 ppt
-        bindsym k               resize grow height      50 px or 10 ppt
-        bindsym l               resize shrink height    50 px or 10 ppt
-        bindsym semicolon       resize grow width       50 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left            resize shrink width     50 px or 10 ppt
-        bindsym Down            resize grow height      50 px or 10 ppt
-        bindsym Up              resize shrink height    50 px or 10 ppt
-        bindsym Right           resize grow width       50 px or 10 ppt
-
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return          mode "default"
-        bindsym Escape          mode "default"
-        bindsym $mod+r          mode "default"
-}
-bindsym $mod+r                  mode "resize"
 
 # show keybindings cheat-sheet
 bindsym $mod+Shift+question exec ~/.config/i3/cheat-sheet/launch.sh

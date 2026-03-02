@@ -9,6 +9,7 @@ direction = arrows/`j`,`k`,`l`,`;`
 | `mod`+`direction` | move focus |
 | `mod`+`shift`+`direction` | swap container |
 | `mod`+`ctrl`+`direction` | move (floating) container |
+| `mod`+`alt`+`direction` | resize container |
 | `mod`+`a` | focus parent |
 | `mod`+`d` | focus child |
 
@@ -39,7 +40,6 @@ direction = arrows/`j`,`k`,`l`,`;`
 
 | keys | function |
 | - | - |
-| `mod`+`r` | resize mode |
 | `mod`+`e` | default |
 | `mod`+`s` | stacking |
 | `mod`+`w` | tabbed |
