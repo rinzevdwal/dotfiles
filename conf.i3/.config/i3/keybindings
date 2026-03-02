@@ -40,8 +40,6 @@ bindsym $mod+j                  focus left
 bindsym $mod+k                  focus down
 bindsym $mod+l                  focus up
 bindsym $mod+semicolon          focus right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Left               focus left
 bindsym $mod+Down               focus down
 bindsym $mod+Up                 focus up
@@ -52,8 +50,6 @@ bindsym $mod+$ctrl+j            move left       50 px
 bindsym $mod+$ctrl+k            move down       50 px
 bindsym $mod+$ctrl+l            move up         50 px
 bindsym $mod+$ctrl+semicolon    move right      50 px
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+$ctrl+Left         move left       50 px
 bindsym $mod+$ctrl+Down         move down       50 px
 bindsym $mod+$ctrl+Up           move up         50 px
@@ -69,8 +65,6 @@ bindsym $mod+Shift+j            mark --add swapee; focus left;  $swap_container_
 bindsym $mod+Shift+k            mark --add swapee; focus down;  $swap_container_with_swapee
 bindsym $mod+Shift+l            mark --add swapee; focus up;    $swap_container_with_swapee
 bindsym $mod+Shift+semicolon    mark --add swapee; focus right; $swap_container_with_swapee
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left         mark --add swapee; focus left;  $swap_container_with_swapee
 bindsym $mod+Shift+Down         mark --add swapee; focus down;  $swap_container_with_swapee
 bindsym $mod+Shift+Up           mark --add swapee; focus up;    $swap_container_with_swapee
@@ -81,8 +75,6 @@ bindsym $mod+$alt+j             resize shrink width     50 px or 10 ppt
 bindsym $mod+$alt+k             resize grow height      50 px or 10 ppt
 bindsym $mod+$alt+l             resize shrink height    50 px or 10 ppt
 bindsym $mod+$alt+semicolon     resize grow width       50 px or 10 ppt
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+$alt+Left          resize shrink width     50 px or 10 ppt
 bindsym $mod+$alt+Down          resize grow height      50 px or 10 ppt
 bindsym $mod+$alt+Up            resize shrink height    50 px or 10 ppt
