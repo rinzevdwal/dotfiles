@@ -91,7 +91,9 @@ sudo apt update && sudo apt install -y \
     keychain \
     policykit-1-gnome \
     weasyprint \
-    zathura
+    zathura \
+    trash-cli \
+    progress
 ```
 
 ```sh
