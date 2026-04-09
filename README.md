@@ -141,6 +141,8 @@ add to `~/.gitconfig`
 [include]
     path = ~/.git_aliases
     path = ~/.config/delta/delta.gitconfig
+[fetch]
+    prune = true
 ```
 
 ### fd
