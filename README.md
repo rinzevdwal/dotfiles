@@ -138,11 +138,16 @@ add to `~/.gitconfig`
 [user]
     name = <user_name>
     email = <user_email>
+    signingKey = ~/.ssh/id_ed25519.pub
+[fetch]
+    prune = true
+[gpg]
+    format = ssh
+[commit]
+    gpgSign = true
 [include]
     path = ~/.git_aliases
     path = ~/.config/delta/delta.gitconfig
-[fetch]
-    prune = true
 ```
 
 ### fd
