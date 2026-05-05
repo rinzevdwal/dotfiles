@@ -2,3 +2,4 @@
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' 
     st = status -sb
     br = branch -avv
+    pulls = !git pull && git submodule sync --recursive && git submodule update --init --recursive && git pull --recurse-submodules

@@ -145,6 +145,8 @@ add to `~/.gitconfig`
     format = ssh
 [commit]
     gpgSign = true
+[submodule]
+    recurse = true
 [include]
     path = ~/.git_aliases
     path = ~/.config/delta/delta.gitconfig
