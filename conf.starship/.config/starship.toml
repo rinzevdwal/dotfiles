@@ -59,6 +59,7 @@ symbol = "*"
 style = "mauve"
 format="[$symbol]($style) "
 shell = ["bash", "--norc", "--noprofile"]
+ignore_timeout = true
 
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
