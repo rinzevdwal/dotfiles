@@ -12,7 +12,7 @@ sync_vscode_extensions() {
 
     if has rsync && [[ -d "$src" ]]; then
         log_status "Syncing $src to $dest"
-        rsync --archive --verbose --human-readable --delete "$src" "$dest"
+        rsync --archive --verbose --human-readable --delete "$src/" "$dest"
     else
         log_error "Skipping vscode-extensions sync: rsync not found or $src missing"
     fi
