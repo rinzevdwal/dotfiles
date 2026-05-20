@@ -321,12 +321,28 @@ ninja -C build install
 
 #### extensions
 
-- Catppuccin.catppuccin-vsc
-- Catppuccin.catppuccin-vsc-icons
-- DavidAnson.vscode-markdownlint
-- streetsidesoftware.code-spell-checker
+- catppuccin.catppuccin-vsc
+- catppuccin.catppuccin-vsc-icons
+- cschlosser.doxdocgen
+- davidanson.vscode-markdownlint
+- editorconfig.editorconfig
+- kylemicallefbonnici.dts-lsp
+- mhutchie.git-graph
+- ms-python.autopep8
+- ms-python.black-formatter
+- ms-python.debugpy
+- ms-python.python
+- ms-python.vscode-pylance
+- ms-vscode-remote.remote-containers
 - ms-vscode.cmake-tools
 - ms-vscode.cpptools
+- redhat.vscode-xml
+- redhat.vscode-yaml
+- rust-lang.rust-analyzer
+- streetsidesoftware.code-spell-checker
+- tamasfe.even-better-toml
+- timonwong.shellcheck
+- valentjn.vscode-ltex
 
 ### Fun terminal applications
 
