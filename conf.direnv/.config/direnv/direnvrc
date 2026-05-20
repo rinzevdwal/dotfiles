@@ -1,0 +1,19 @@
+# Usage: sync_vscode_extensions [<source>] [<destination>]
+#
+# Copies the content of source to destination. This is used to copy vscode
+# extensions from a home directory to a project folder.
+#
+# Example:
+#   sync_vscode_extensions ~/vscode-extensions .vscode/extensions
+#
+sync_vscode_extensions() {
+    local src="$(realpath "$(expand_path "${1}")")"
+    local dest="$(expand_path "${2}")"
+
+    if has rsync && [[ -d "$src" ]]; then
+        log_status "Syncing $src to $dest"
+        rsync --archive --verbose --human-readable --delete "$src" "$dest"
+    else
+        log_error "Skipping vscode-extensions sync: rsync not found or $src missing"
+    fi
+}
