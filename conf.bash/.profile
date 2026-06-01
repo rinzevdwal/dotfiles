@@ -15,5 +15,5 @@ fi
 
 # Start ssh agent and load private key
 if which keychain >/dev/null; then
-    eval "$(keychain --quiet --eval id_ed25519)"
+    eval "$(keychain --quiet --eval --ignore-missing id_ed25519)"
 fi
