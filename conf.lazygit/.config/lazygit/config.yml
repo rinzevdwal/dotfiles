@@ -2,6 +2,10 @@ git:
   pagers:
     - pager: delta --paging=never
   overrideGpg: true
+  branchLogCmd: "git lg"
+
+gui:
+  nerdFontsVersion: "3"
 
 theme:
   activeBorderColor:
