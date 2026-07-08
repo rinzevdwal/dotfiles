@@ -301,7 +301,7 @@ ninja -C build install
     "editor.renderWhitespace": "all",
     "editor.rulers": [
         {
-            "color": "#8f8f8f2d",
+            "color": "#44475a",
             "column": 120
         }
     ],
