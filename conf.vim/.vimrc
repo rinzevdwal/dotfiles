@@ -38,3 +38,6 @@ set list
 highlight Whitespace ctermfg=8 guifg=#585b70
 highlight SpecialKey ctermfg=8 guifg=#585b70
 highlight NonText ctermfg=8 guifg=#585b70
+
+" Use the system clipboard as default
+set clipboard=unnamedplus
