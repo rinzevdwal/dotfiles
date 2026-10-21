@@ -100,3 +100,14 @@ set splitbelow splitright
 " (wildmenu itself is already enabled by defaults.vim.)
 set wildmode=longest:full,full
 
+" ---------------------------------------------------------------
+" Mappings
+" ---------------------------------------------------------------
+" Keep the selection after indenting with < or > in visual mode,
+" so you can press them repeatedly.
+vnoremap < <gv
+vnoremap > >gv
+
+" Forgot sudo? :w!! saves the file as root.
+cnoremap w!! w !sudo tee % >/dev/null
+
