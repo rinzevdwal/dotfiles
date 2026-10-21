@@ -6,6 +6,15 @@ set encoding=utf-8
 scriptencoding utf-8
 
 " ---------------------------------------------------------------
+" Vim defaults
+" ---------------------------------------------------------------
+" Load Vim's built-in defaults (syntax on, filetype plugin indent on,
+" incsearch, wildmenu, scrolloff=5, ttimeout, last cursor position, ...).
+" Vim skips these automatically when ~/.vimrc exists, so load them
+" explicitly. Keep this above your own settings so yours override them.
+source $VIMRUNTIME/defaults.vim
+
+" ---------------------------------------------------------------
 " Appearance
 " ---------------------------------------------------------------
 " Use 24-bit colors in the terminal
