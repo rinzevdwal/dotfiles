@@ -76,3 +76,27 @@ set hlsearch
 " <silent> stops Vim from echoing :nohlsearch in the command line.
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 
+" ---------------------------------------------------------------
+" Editing behavior
+" ---------------------------------------------------------------
+" Persistent undo: you can still undo after closing and reopening a file.
+" The directory is created automatically if it doesn't exist.
+set undofile
+set undodir=~/.vim/undo
+if !isdirectory(expand(&undodir))
+  call mkdir(expand(&undodir), 'p', 0700)
+endif
+
+" Keep 8 lines of context above/below the cursor (defaults.vim uses 5).
+set scrolloff=8
+
+" Switch buffers without having to save first.
+set hidden
+
+" Open new splits to the right / below, instead of left / above.
+set splitbelow splitright
+
+" Complete to the longest common match first, then cycle through the rest.
+" (wildmenu itself is already enabled by defaults.vim.)
+set wildmode=longest:full,full
+
