@@ -111,3 +111,60 @@ vnoremap > >gv
 " Forgot sudo? :w!! saves the file as root.
 cnoremap w!! w !sudo tee % >/dev/null
 
+" ===============================================================
+" fzf (fzf.vim)
+" ===============================================================
+" Needs: fzf, fzf + fzf.vim in ~/.vim/pack/plugins/start/, ripgrep (:Rg)
+"
+" Mappings (<leader> = Space):
+"   Ctrl-p / Space f   files in the working directory
+"   Space gf           git-tracked files only
+"   Space b            open buffers
+"   Space h            recent files
+"   Space /            lines in the current buffer
+"   Space l            lines in all open buffers
+"   Space *            grep the word under the cursor
+"   Space rg           live ripgrep (updates as you type)
+"   Space c            commands
+"   Space m            marks
+"
+" Inside any fzf window:
+"   Enter / Ctrl-x / Ctrl-v / Ctrl-t   open here / split / vsplit / tab
+"   Tab                                select multiple entries
+"   Ctrl-j / Ctrl-k                    move down / up
+"   Esc                                close
+
+" <leader> is the prefix for custom mappings (default \). Must be set
+" before any <leader> mapping. Delete this line to keep the default.
+let mapleader = " "
+
+" Files (Ctrl-p replaces "move up a line", which k already does)
+nnoremap <C-p>      :Files<CR>
+nnoremap <leader>f  :Files<CR>
+nnoremap <leader>gf :GFiles<CR>
+
+" Buffers and history
+nnoremap <leader>b  :Buffers<CR>
+nnoremap <leader>h  :History<CR>
+
+" Search text
+nnoremap <leader>/  :BLines<CR>
+nnoremap <leader>l  :Lines<CR>
+nnoremap <leader>*  :Rg <C-r><C-w><CR>
+
+" Live ripgrep: rg re-runs on every keystroke (from the fzf.vim README).
+" :RG [pattern] runs it, :RG! runs it fullscreen.
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+nnoremap <leader>rg :RG<CR>
+
+" Misc
+nnoremap <leader>c  :Commands<CR>
+nnoremap <leader>m  :Marks<CR>
