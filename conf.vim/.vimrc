@@ -54,3 +54,25 @@ highlight NonText ctermfg=8 guifg=#585b70
 
 " Use the system clipboard as default
 set clipboard=unnamedplus
+
+" ---------------------------------------------------------------
+" Searching
+" ---------------------------------------------------------------
+
+" Case-insensitive search by default ("foo" matches foo, Foo, FOO)...
+set ignorecase
+" ...unless the pattern contains an uppercase letter, in which case it
+" becomes case-sensitive ("Foo" matches only Foo).
+" Note: smartcase only takes effect when ignorecase is also set.
+" Tip: add \c or \C anywhere in a pattern to force insensitive/sensitive.
+set smartcase
+
+" Highlight all matches of the last search pattern.
+set hlsearch
+
+" Press Esc twice in normal mode to clear the current highlighting.
+" This only hides the highlights; the search pattern is kept, so
+" n / N still jump to the next/previous match.
+" <silent> stops Vim from echoing :nohlsearch in the command line.
+nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
+
