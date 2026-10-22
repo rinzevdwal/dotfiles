@@ -180,18 +180,53 @@ nnoremap <leader>m  :Marks<CR>
 " LazyGit popup
 " ---------------------------------------------------------------
 " <leader>g opens lazygit in a centered popup with rounded borders.
-" The popup and its terminal buffer are removed when lazygit exits.
+" The popup scales with the Vim window and is removed (together with its
+" terminal buffer) when lazygit exits.
 " Needs: lazygit in $PATH, Vim built with +terminal and +popupwin.
+
+" Popup size as a fraction of the Vim window.
+let s:width_ratio = 0.9
+let s:height_ratio = 0.85
+
+" Smallest popup (inside the border) in which lazygit stays usable.
+let s:min_width = 80
+let s:min_height = 24
 
 let s:popup = 0
 let s:buf = 0
 
+" Returns [width, height] of the popup contents: scaled to the window,
+" raised to the minimum, then capped to what fits on screen (borders and
+" command line excluded). The cap wins on very small terminals.
+function! s:Size() abort
+  let l:width = float2nr(&columns * s:width_ratio)
+  let l:height = float2nr(&lines * s:height_ratio)
+  let l:width = min([max([l:width, s:min_width]), &columns - 4])
+  let l:height = min([max([l:height, s:min_height]), &lines - 6])
+  return [l:width, l:height]
+endfunction
+
 " Called when lazygit exits: close the popup and wipe the terminal buffer.
 function! s:OnExit(job, status) abort
-  call popup_close(s:popup)
+  if s:popup
+    call popup_close(s:popup)
+    let s:popup = 0
+  endif
   if bufexists(s:buf)
     execute 'bwipeout!' s:buf
   endif
+endfunction
+
+" Keep the popup in step with the window when Vim is resized.
+function! s:OnResize() abort
+  if !s:popup || empty(popup_getpos(s:popup))
+    return
+  endif
+  let [l:width, l:height] = s:Size()
+  call popup_setoptions(s:popup, {
+        \ 'minwidth': l:width, 'maxwidth': l:width,
+        \ 'minheight': l:height, 'maxheight': l:height,
+        \ })
 endfunction
 
 function! s:LazyGit() abort
@@ -205,9 +240,7 @@ function! s:LazyGit() abort
   endif
 
   let s:buf = term_start('lazygit', {'hidden': 1, 'exit_cb': function('s:OnExit')})
-
-  let l:width = min([&columns - 4, 110])
-  let l:height = min([&lines - 6, 30])
+  let [l:width, l:height] = s:Size()
 
   " borderchars order: top, right, bottom, left,
   "                    top-left, top-right, bottom-right, bottom-left
@@ -222,5 +255,10 @@ function! s:LazyGit() abort
         \                 "\u256d", "\u256e", "\u256f", "\u2570"],
         \ })
 endfunction
+
+augroup my_lazygit
+  autocmd!
+  autocmd VimResized * call s:OnResize()
+augroup END
 
 nnoremap <silent> <leader>g :call <SID>LazyGit()<CR>
