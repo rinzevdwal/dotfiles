@@ -149,6 +149,9 @@ HISTSIZE=99999                   # Amount of history to preserve
 # Share history between concurrent Bash sessions
 PROMPT_COMMAND="history -a; history -n"
 
+# Disable Ctrl+S terminal freeze (XOFF) in interactive shells
+[[ $- == *i* ]] && stty -ixon
+
 # Function for copying the working directory
 copy_working_directory() {
     echo -n ${PWD/#$HOME/\~} | tr -d "\r\n" | xclip -selection clipboard -i

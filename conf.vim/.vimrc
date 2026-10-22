@@ -326,3 +326,25 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" ---------------------------------------------------------------
+" Move lines and save
+" ---------------------------------------------------------------
+" Terminals send Alt+key as <Esc>key; Vim must be told to treat that as <M-key>.
+execute "set <M-j>=\ej"
+execute "set <M-k>=\ek"
+set ttimeoutlen=50
+
+" Alt-j / Alt-k move the line (or selection) down / up and re-indent it.
+nnoremap <silent> <M-j> :<C-u>execute 'move .+' . v:count1<CR>==
+nnoremap <silent> <M-k> :<C-u>execute 'move .-' . (v:count1 + 1)<CR>==
+inoremap <silent> <M-j> <Esc>:move .+1<CR>==gi
+inoremap <silent> <M-k> <Esc>:move .-2<CR>==gi
+xnoremap <silent> <M-j> :<C-u>execute "'<,'>move '>+" . v:count1<CR>gv=gv
+xnoremap <silent> <M-k> :<C-u>execute "'<,'>move '<-" . (v:count1 + 1)<CR>gv=gv
+
+" Ctrl-s saves from any mode and returns to normal mode.
+nnoremap <silent> <C-s> :w<CR>
+inoremap <silent> <C-s> <Esc>:w<CR>
+xnoremap <silent> <C-s> <Esc>:w<CR>
+snoremap <silent> <C-s> <Esc>:w<CR>
+
