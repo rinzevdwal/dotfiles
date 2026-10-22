@@ -262,6 +262,7 @@ augroup my_lazygit
   autocmd VimResized * call s:OnResize()
 augroup END
 
+nnoremap <silent> <leader>gg :call <SID>LazyGit()<CR>
 
 " ---------------------------------------------------------------
 " Files and buffers
