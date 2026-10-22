@@ -362,3 +362,22 @@ nnoremap <leader>gc      :Commits<CR>
 nnoremap <leader>gs      :GFiles?<CR>
 nnoremap <leader>gg      :call <SID>LazyGit()<CR>
 
+" ---------------------------------------------------------------
+" style options
+" ---------------------------------------------------------------
+set confirm
+set autowrite
+set cursorline
+set linebreak
+set sidescrolloff=8
+set shiftround
+set smartindent
+set virtualedit=block
+set undolevels=10000
+set foldlevel=99
+set pumheight=10
+set completeopt=menu,menuone,noselect
+set laststatus=2
+set grepprg=rg\ --vimgrep
+set grepformat=%f:%1:%c:%m
+
