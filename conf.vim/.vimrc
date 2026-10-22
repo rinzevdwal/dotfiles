@@ -287,3 +287,22 @@ endif
 " Faster CursorHold events (default is 4000 ms); used by plugins and autoread.
 set updatetime=300
 
+" ---------------------------------------------------------------
+" Indentation and formatting
+" ---------------------------------------------------------------
+" Default indentation: 4 spaces. Your C/dts autocmd overrides this with tabs.
+set expandtab shiftwidth=4 softtabstop=4
+
+" Pressing o/O on a comment line should not start a new comment line.
+" Done in an autocmd because filetype plugins would otherwise reset it.
+augroup my_formatoptions
+  autocmd!
+  autocmd FileType * setlocal formatoptions-=o
+augroup END
+
+" Spell checking only where prose is written.
+augroup my_spell
+  autocmd!
+  autocmd FileType gitcommit,markdown,text setlocal spell spelllang=en
+augroup END
+
