@@ -1,31 +1,67 @@
+" ===============================================================
+" .vimrc
+" ===============================================================
+" Sections:
+"   1. Encoding              8. Editing
+"   2. Vim defaults          9. Searching
+"   3. Leader key           10. Files, undo and swap
+"   4. Appearance           11. Windows and buffers
+"   5. Whitespace markers   12. General mappings
+"   6. Terminal and timing  13. fzf
+"   7. Indentation          14. LazyGit
+"
+" Keybindings follow LazyVim where Vim allows it. <leader> is Space.
+
 " ---------------------------------------------------------------
-" Encoding
+" 1. Encoding
 " ---------------------------------------------------------------
-" Must come first so the rest of the file is read as UTF-8
+" Must come first so the rest of the file is read as UTF-8.
 set encoding=utf-8
 scriptencoding utf-8
 
 " ---------------------------------------------------------------
-" Vim defaults
+" 2. Vim defaults
 " ---------------------------------------------------------------
-" Load Vim's built-in defaults (syntax on, filetype plugin indent on,
-" incsearch, wildmenu, scrolloff=5, ttimeout, last cursor position, ...).
-" Vim skips these automatically when ~/.vimrc exists, so load them
-" explicitly. Keep this above your own settings so yours override them.
+" Vim skips its built-in defaults (syntax on, filetype plugin indent on,
+" incsearch, wildmenu, scrolloff=5, ttimeout, last cursor position, ...)
+" as soon as a ~/.vimrc exists, so load them explicitly. Keep this above
+" your own settings so that yours override them.
 source $VIMRUNTIME/defaults.vim
 
 " ---------------------------------------------------------------
-" Appearance
+" 3. Leader key
 " ---------------------------------------------------------------
-" Use 24-bit colors in the terminal
+" Prefix for custom mappings (default \). Must be set before any
+" <leader> mapping in this file.
+let mapleader = " "
+
+" ---------------------------------------------------------------
+" 4. Appearance
+" ---------------------------------------------------------------
+" 24-bit colors in the terminal (the Catppuccin theme only defines
+" GUI colors, so it needs this).
 set termguicolors
 colorscheme catppuccin_mocha
 
-" Absolute number on the current line, relative numbers elsewhere
+" Always show the statusline (Vim has no global statusline like Neovim).
+set laststatus=2
+
+" Absolute number on the current line, relative numbers elsewhere.
 set number relativenumber
 
+" Highlight the line the cursor is on.
+set cursorline
+
+" Wrap long lines at word boundaries instead of mid-word.
+set linebreak
+
+" Lines of context kept around the cursor when scrolling
+" (defaults.vim uses scrolloff=5).
+set scrolloff=8
+set sidescrolloff=8
+
 " ---------------------------------------------------------------
-" Whitespace visibility
+" 5. Whitespace markers
 " ---------------------------------------------------------------
 " Uses :let with a double-quoted string so the \u escapes are evaluated
 " (:set would take them literally).
@@ -36,117 +72,239 @@ set number relativenumber
 "   precedes -> shown when a line continues past the left edge
 "   nbsp     -> open box for non-breaking spaces
 let &listchars = "tab:\u2192 ,space:\u00b7,trail:\u00b7,extends:\u203a,precedes:\u2039,nbsp:\u2423"
-
-" Turn the whitespace markers on
 set list
 
-" Dim the whitespace markers so they don't distract from the text
-" (Catppuccin Mocha surface2).
-" SpecialKey covers tab/space/trail/nbsp, NonText covers extends/precedes,
-" and Whitespace is the equivalent group in Neovim.
+" Dim the markers so they don't distract from the text
+" (Catppuccin Mocha surface2). These must come AFTER :colorscheme,
+" because the theme starts with `hi clear`.
+"   SpecialKey: tab/space/trail/nbsp    NonText: extends/precedes
+"   Whitespace: the equivalent group in Neovim
 highlight Whitespace ctermfg=8 guifg=#585b70
 highlight SpecialKey ctermfg=8 guifg=#585b70
 highlight NonText ctermfg=8 guifg=#585b70
 
 " ---------------------------------------------------------------
-" clipboard
+" 6. Terminal and timing
 " ---------------------------------------------------------------
-
-" Use the system clipboard as default
-set clipboard=unnamedplus
-
-" ---------------------------------------------------------------
-" Searching
-" ---------------------------------------------------------------
-
-" Case-insensitive search by default ("foo" matches foo, Foo, FOO)...
-set ignorecase
-" ...unless the pattern contains an uppercase letter, in which case it
-" becomes case-sensitive ("Foo" matches only Foo).
-" Note: smartcase only takes effect when ignorecase is also set.
-" Tip: add \c or \C anywhere in a pattern to force insensitive/sensitive.
-set smartcase
-
-" Highlight all matches of the last search pattern.
-set hlsearch
-
-" Press Esc twice in normal mode to clear the current highlighting.
-" This only hides the highlights; the search pattern is kept, so
-" n / N still jump to the next/previous match.
-" <silent> stops Vim from echoing :nohlsearch in the command line.
-nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
-
-" ---------------------------------------------------------------
-" Timing
-" ---------------------------------------------------------------
-" Time to wait for the second key of a mapping such as <Esc><Esc>.
-" (defaults.vim already sets ttimeout/ttimeoutlen for terminal key codes.)
+" How long Vim waits for the next key of a mapping such as <Space>sg.
 set timeoutlen=500
 
-" ---------------------------------------------------------------
-" Editing behavior
-" ---------------------------------------------------------------
-" Persistent undo: you can still undo after closing and reopening a file.
-" The directory is created automatically if it doesn't exist.
-set undofile
-set undodir=~/.vim/undo
-if !isdirectory(expand(&undodir))
-  call mkdir(expand(&undodir), 'p', 0700)
-endif
+" How long Vim waits after Esc to see whether it starts a key code.
+" (Esc followed by j or k within this time counts as Alt-j / Alt-k.)
+set ttimeoutlen=50
 
-" Keep 8 lines of context above/below the cursor (defaults.vim uses 5).
-set scrolloff=8
+" Idle time in ms before CursorHold fires and the swap file is written
+" (default 4000). Makes the autoread check below respond quickly.
+set updatetime=300
+
+" Terminals send Alt+key as <Esc>key; tell Vim to read that as <M-key>.
+execute "set <M-j>=\ej"
+execute "set <M-k>=\ek"
+
+" Cursor shape per mode: beam in insert, block in normal, underline in
+" replace. Remove these three lines if your terminal ignores them.
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+let &t_SR = "\e[4 q"
+
+" ---------------------------------------------------------------
+" 7. Indentation and formatting
+" ---------------------------------------------------------------
+" Default: 4 spaces per indent level, Tab inserts spaces.
+set expandtab shiftwidth=4 softtabstop=4
+
+" Round indents made with < and > to a multiple of shiftwidth.
+set shiftround
+
+" Copy the indent of the previous line and indent after braces.
+set smartindent
+
+" Pressing o/O on a comment line does not start a new comment line.
+" Done in an autocmd because filetype plugins would reset a plain :set.
+" (LazyVim keeps the default; delete this block to match it.)
+augroup my_formatoptions
+  autocmd!
+  autocmd FileType * setlocal formatoptions-=o
+augroup END
+
+" ---------------------------------------------------------------
+" 8. Editing
+" ---------------------------------------------------------------
+" Use the system clipboard for all yanks and pastes.
+set clipboard=unnamedplus
+
+" Let the cursor move past the end of a line in visual block mode.
+set virtualedit=block
+
+" Insert-mode completion popup: at most 10 entries, always show the menu,
+" and don't preselect an entry.
+set pumheight=10
+set completeopt=menu,menuone,noselect
+
+" Command-line completion: first Tab completes the longest common text
+" and shows the menu, further Tabs cycle through the matches.
+" (wildmenu itself is enabled by defaults.vim.)
+set wildmode=longest:full,full
+
+" Start with all folds open.
+set foldlevel=99
+
+" Spell checking only where prose is written.
+" ]s / [s jump between errors, z= suggests, zg adds a word.
+augroup my_spell
+  autocmd!
+  autocmd FileType gitcommit,markdown,text setlocal spell spelllang=en
+augroup END
+
+" ---------------------------------------------------------------
+" 9. Searching
+" ---------------------------------------------------------------
+" Case-insensitive by default ("foo" matches foo, Foo, FOO)...
+set ignorecase
+" ...unless the pattern contains an uppercase letter, then it is
+" case-sensitive. Only works together with ignorecase.
+" Add \c or \C to a pattern to force insensitive / sensitive.
+set smartcase
+
+" Highlight all matches of the last search.
+set hlsearch
+
+" Esc Esc clears the highlighting. The pattern is kept, so n / N still work.
+nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
+
+" n always searches forward and N backward, and both open folds.
+nnoremap <expr> n 'Nn'[v:searchforward] . 'zv'
+nnoremap <expr> N 'nN'[v:searchforward] . 'zv'
+
+" Use ripgrep for :grep, with column numbers in the quickfix list.
+set grepprg=rg\ --vimgrep
+set grepformat=%f:%l:%c:%m
+
+" ---------------------------------------------------------------
+" 10. Files, undo and swap
+" ---------------------------------------------------------------
+" Ask instead of failing on :q with unsaved changes, and save
+" automatically before commands such as :next and :make.
+set confirm
+set autowrite
 
 " Switch buffers without having to save first.
 set hidden
 
-" Open new splits to the right / below, instead of left / above.
+" Reload files that changed on disk (after lazygit checkouts, pulls, ...).
+" checktime runs when entering a buffer, regaining focus, or when idle.
+" (FocusGained needs a terminal that sends focus events.)
+set autoread
+augroup my_autoread
+  autocmd!
+  autocmd FocusGained,BufEnter,CursorHold * if mode() != 'c' | checktime | endif
+augroup END
+
+" No backup files. Swap files go to ~/.vim/swap so git status stays clean;
+" the trailing // makes the names unique per full path.
+set nobackup nowritebackup
+set directory=~/.vim/swap//
+if !isdirectory(expand('~/.vim/swap'))
+  call mkdir(expand('~/.vim/swap'), 'p', 0700)
+endif
+
+" Persistent undo: undo still works after closing and reopening a file.
+set undofile
+set undodir=~/.vim/undo
+set undolevels=10000
+if !isdirectory(expand(&undodir))
+  call mkdir(expand(&undodir), 'p', 0700)
+endif
+
+" ---------------------------------------------------------------
+" 11. Windows and buffers
+" ---------------------------------------------------------------
+" New splits open to the right / below instead of left / above.
 set splitbelow splitright
 
-" Complete to the longest common match first, then cycle through the rest.
-" (wildmenu itself is already enabled by defaults.vim.)
-set wildmode=longest:full,full
+" Move between windows with Ctrl-h/j/k/l.
+" (Ctrl-l no longer redraws the screen; use :redraw!.)
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Split windows. <Bar> is needed because a literal | ends the mapping.
+nnoremap <leader>-     :split<CR>
+nnoremap <leader><Bar> :vsplit<CR>
+
+" Previous window / close window.
+nnoremap <leader>ww <C-w>p
+nnoremap <leader>wd <C-w>c
+
+" Previous / next buffer. S-h and S-l shadow H and L (top / bottom of screen).
+nnoremap <S-h> :bprevious<CR>
+nnoremap <S-l> :bnext<CR>
+nnoremap [b    :bprevious<CR>
+nnoremap ]b    :bnext<CR>
+
+" Switch to the alternate buffer / delete the current buffer.
+nnoremap <leader>bb :e #<CR>
+nnoremap <leader>bd :bdelete<CR>
 
 " ---------------------------------------------------------------
-" Mappings
+" 12. General mappings
 " ---------------------------------------------------------------
-" <leader> is the prefix for custom mappings (default \). Must be set
-" before any <leader> mapping. Delete this line to keep the default.
-let mapleader = " "
+" Y yanks to the end of the line, like D and C (default: same as yy).
+nnoremap Y y$
 
-" Keep the selection after indenting with < or > in visual mode,
-" so you can press them repeatedly.
+" Keep the selection after indenting with < or > in visual mode.
 vnoremap < <gv
 vnoremap > >gv
+
+" Alt-j / Alt-k move the line (or selection) down / up and re-indent it.
+nnoremap <silent> <M-j> :<C-u>execute 'move .+' . v:count1<CR>==
+nnoremap <silent> <M-k> :<C-u>execute 'move .-' . (v:count1 + 1)<CR>==
+inoremap <silent> <M-j> <Esc>:move .+1<CR>==gi
+inoremap <silent> <M-k> <Esc>:move .-2<CR>==gi
+xnoremap <silent> <M-j> :<C-u>execute "'<,'>move '>+" . v:count1<CR>gv=gv
+xnoremap <silent> <M-k> :<C-u>execute "'<,'>move '<-" . (v:count1 + 1)<CR>gv=gv
+
+" Ctrl-s saves from any mode and returns to normal mode.
+" Needs `stty -ixon` in ~/.bashrc, otherwise the terminal freezes on Ctrl-s.
+nnoremap <silent> <C-s> :w<CR>
+inoremap <silent> <C-s> <Esc>:w<CR>
+xnoremap <silent> <C-s> <Esc>:w<CR>
+snoremap <silent> <C-s> <Esc>:w<CR>
+
+" Quit all windows.
+nnoremap <leader>qq :qa<CR>
 
 " Forgot sudo? :w!! saves the file as root.
 cnoremap w!! w !sudo tee % >/dev/null
 
 " ---------------------------------------------------------------
-" fzf (fzf.vim)
+" 13. fzf (fzf.vim)
 " ---------------------------------------------------------------
-" Needs: fzf, fzf + fzf.vim in ~/.vim/pack/plugins/start/, ripgrep (:Rg)
+" Needs: fzf, the fzf and fzf.vim plugins in ~/.vim/pack/plugins/start/,
+" and ripgrep (for :Rg and :RG).
 "
 " Mappings (<leader> = Space):
-"   Ctrl-p / Space f   files in the working directory
-"   Space gf           git-tracked files only
-"   Space b            open buffers
-"   Space h            recent files
-"   Space /            lines in the current buffer
-"   Space l            lines in all open buffers
-"   Space *            grep the word under the cursor
-"   Space rg           live ripgrep (updates as you type)
-"   Space c            commands
-"   Space m            marks
+"   Space Space / Space ff   files in the working directory
+"   Space fg                 git-tracked files
+"   Space fr                 recent files
+"   Space fb / Space ,       open buffers
+"   Space / / Space sg       live ripgrep (updates as you type)
+"   Space sw                 grep the word under the cursor
+"   Space sb                 lines in the current buffer
+"   Space sC                 commands
+"   Space sm                 marks
+"   Space sk                 key mappings
+"   Space sh                 help tags
+"   Space :                  command history
+"   Space gc                 git commits
+"   Space gs                 git status (changed files)
 "
 " Inside any fzf window:
 "   Enter / Ctrl-x / Ctrl-v / Ctrl-t   open here / split / vsplit / tab
 "   Tab                                select multiple entries
 "   Ctrl-j / Ctrl-k                    move down / up
 "   Esc                                close
-
-" Files (Ctrl-p replaces "move up a line", which k already does)
-
 
 " Live ripgrep: rg re-runs on every keystroke (from the fzf.vim README).
 " :RG [pattern] runs it, :RG! runs it fullscreen.
@@ -160,12 +318,33 @@ endfunction
 
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
+" Files (all from the working directory)
+nnoremap <leader><space> :Files<CR>
+nnoremap <leader>ff      :Files<CR>
+nnoremap <leader>fg      :GFiles<CR>
+nnoremap <leader>fr      :History<CR>
+nnoremap <leader>fb      :Buffers<CR>
+nnoremap <leader>,       :Buffers<CR>
 
+" Search
+nnoremap <leader>/       :RG<CR>
+nnoremap <leader>sg      :RG<CR>
+nnoremap <leader>sw      :Rg <C-r><C-w><CR>
+nnoremap <leader>sb      :BLines<CR>
+nnoremap <leader>sC      :Commands<CR>
+nnoremap <leader>sm      :Marks<CR>
+nnoremap <leader>sk      :Maps<CR>
+nnoremap <leader>sh      :Helptags<CR>
+nnoremap <leader>:       :History:<CR>
+
+" Git
+nnoremap <leader>gc      :Commits<CR>
+nnoremap <leader>gs      :GFiles?<CR>
 
 " ---------------------------------------------------------------
-" LazyGit popup
+" 14. LazyGit popup
 " ---------------------------------------------------------------
-" <leader>g opens lazygit in a centered popup with rounded borders.
+" <leader>gg opens lazygit in a centered popup with rounded borders.
 " The popup scales with the Vim window and is removed (together with its
 " terminal buffer) when lazygit exits.
 " Needs: lazygit in $PATH, Vim built with +terminal and +popupwin.
@@ -192,7 +371,8 @@ function! s:Size() abort
   return [l:width, l:height]
 endfunction
 
-" Called when lazygit exits: close the popup and wipe the terminal buffer.
+" Called when lazygit exits: close the popup, wipe the terminal buffer,
+" and reload files that lazygit changed on disk.
 function! s:OnExit(job, status) abort
   if s:popup
     call popup_close(s:popup)
@@ -249,156 +429,3 @@ augroup my_lazygit
 augroup END
 
 nnoremap <silent> <leader>gg :call <SID>LazyGit()<CR>
-
-" ---------------------------------------------------------------
-" Files and buffers
-" ---------------------------------------------------------------
-" Reload files that changed on disk (e.g. after lazygit checkouts or pulls).
-" checktime runs when you re-enter a buffer or the terminal regains focus.
-" (FocusGained needs a terminal that sends focus events; BufEnter works everywhere.)
-set autoread
-augroup my_autoread
-  autocmd!
-  autocmd FocusGained,BufEnter,CursorHold * if mode() != 'c' | checktime | endif
-augroup END
-
-" No backup files, and keep swap files out of your project directories
-" (so git status stays clean). The trailing // makes names unique per path.
-set nobackup nowritebackup
-set directory=~/.vim/swap//
-if !isdirectory(expand('~/.vim/swap'))
-  call mkdir(expand('~/.vim/swap'), 'p', 0700)
-endif
-
-" Faster CursorHold events (default is 4000 ms); used by plugins and autoread.
-set updatetime=300
-
-" ---------------------------------------------------------------
-" Indentation and formatting
-" ---------------------------------------------------------------
-" Default indentation: 4 spaces. Your C/dts autocmd overrides this with tabs.
-set expandtab shiftwidth=4 softtabstop=4
-
-" Pressing o/O on a comment line should not start a new comment line.
-" Done in an autocmd because filetype plugins would otherwise reset it.
-augroup my_formatoptions
-  autocmd!
-  autocmd FileType * setlocal formatoptions-=o
-augroup END
-
-" Spell checking only where prose is written.
-augroup my_spell
-  autocmd!
-  autocmd FileType gitcommit,markdown,text setlocal spell spelllang=en
-augroup END
-
-" ---------------------------------------------------------------
-" Terminal
-" ---------------------------------------------------------------
-" Cursor shape: beam in insert mode, block in normal, underline in replace.
-let &t_SI = "\e[6 q"
-let &t_EI = "\e[2 q"
-let &t_SR = "\e[4 q"
-
-" ---------------------------------------------------------------
-" More mappings
-" ---------------------------------------------------------------
-" Y yanks to end of line, consistent with D and C (default is the same as yy).
-nnoremap Y y$
-
-" Move between windows with Ctrl-h/j/k/l instead of Ctrl-w h/j/k/l.
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
-" ---------------------------------------------------------------
-" Move lines and save
-" ---------------------------------------------------------------
-" Terminals send Alt+key as <Esc>key; Vim must be told to treat that as <M-key>.
-execute "set <M-j>=\ej"
-execute "set <M-k>=\ek"
-set ttimeoutlen=50
-
-" Alt-j / Alt-k move the line (or selection) down / up and re-indent it.
-nnoremap <silent> <M-j> :<C-u>execute 'move .+' . v:count1<CR>==
-nnoremap <silent> <M-k> :<C-u>execute 'move .-' . (v:count1 + 1)<CR>==
-inoremap <silent> <M-j> <Esc>:move .+1<CR>==gi
-inoremap <silent> <M-k> <Esc>:move .-2<CR>==gi
-xnoremap <silent> <M-j> :<C-u>execute "'<,'>move '>+" . v:count1<CR>gv=gv
-xnoremap <silent> <M-k> :<C-u>execute "'<,'>move '<-" . (v:count1 + 1)<CR>gv=gv
-
-" Ctrl-s saves from any mode and returns to normal mode.
-nnoremap <silent> <C-s> :w<CR>
-inoremap <silent> <C-s> <Esc>:w<CR>
-xnoremap <silent> <C-s> <Esc>:w<CR>
-snoremap <silent> <C-s> <Esc>:w<CR>
-
-" ---------------------------------------------------------------
-" Key bindings
-" ---------------------------------------------------------------
-
-" Files (all from cwd)
-nnoremap <leader><space> :Files<CR>
-nnoremap <leader>ff      :Files<CR>
-nnoremap <leader>fg      :GFiles<CR>
-nnoremap <leader>fr      :History<CR>
-nnoremap <leader>fb      :Buffers<CR>
-nnoremap <leader>,       :Buffers<CR>
-
-" Search
-nnoremap <leader>/       :RG<CR>
-nnoremap <leader>sg      :RG<CR>
-nnoremap <leader>sw      :Rg <C-r><C-w><CR>
-nnoremap <leader>sb      :BLines<CR>
-nnoremap <leader>sC      :Commands<CR>
-nnoremap <leader>sm      :Marks<CR>
-nnoremap <leader>sk      :Maps<CR>
-nnoremap <leader>sh      :Helptags<CR>
-nnoremap <leader>:       :History:<CR>
-
-" Git
-nnoremap <leader>gc      :Commits<CR>
-nnoremap <leader>gs      :GFiles?<CR>
-nnoremap <leader>gg      :call <SID>LazyGit()<CR>
-
-" ---------------------------------------------------------------
-" style options
-" ---------------------------------------------------------------
-set confirm
-set autowrite
-set cursorline
-set linebreak
-set sidescrolloff=8
-set shiftround
-set smartindent
-set virtualedit=block
-set undolevels=10000
-set foldlevel=99
-set pumheight=10
-set completeopt=menu,menuone,noselect
-set laststatus=2
-set grepprg=rg\ --vimgrep
-set grepformat=%f:%1:%c:%m
-
-" ---------------------------------------------------------------
-" LazyVim-style mappings
-" ---------------------------------------------------------------
-" Search direction: n is always forward, N always backward, and open folds.
-nnoremap <expr> n 'Nn'[v:searchforward] . 'zv'
-nnoremap <expr> N 'nN'[v:searchforward] . 'zv'
-
-" Buffers (shadow H/L, which jump to the top/bottom of the screen)
-nnoremap <S-h>      :bprevious<CR>
-nnoremap <S-l>      :bnext<CR>
-nnoremap [b         :bprevious<CR>
-nnoremap ]b         :bnext<CR>
-nnoremap <leader>bb :e #<CR>
-nnoremap <leader>bd :bdelete<CR>
-
-" Windows
-nnoremap <leader>wd <C-w>c
-nnoremap <leader>ww <C-w>p
-
-" Quit all
-nnoremap <leader>qq :qa<CR>
