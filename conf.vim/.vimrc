@@ -215,6 +215,7 @@ function! s:OnExit(job, status) abort
   if bufexists(s:buf)
     execute 'bwipeout!' s:buf
   endif
+  checktime
 endfunction
 
 " Keep the popup in step with the window when Vim is resized.
