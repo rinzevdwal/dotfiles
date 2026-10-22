@@ -262,4 +262,27 @@ augroup my_lazygit
   autocmd VimResized * call s:OnResize()
 augroup END
 
-nnoremap <silent> <leader>g :call <SID>LazyGit()<CR>
+
+" ---------------------------------------------------------------
+" Files and buffers
+" ---------------------------------------------------------------
+" Reload files that changed on disk (e.g. after lazygit checkouts or pulls).
+" checktime runs when you re-enter a buffer or the terminal regains focus.
+" (FocusGained needs a terminal that sends focus events; BufEnter works everywhere.)
+set autoread
+augroup my_autoread
+  autocmd!
+  autocmd FocusGained,BufEnter,CursorHold * if mode() != 'c' | checktime | endif
+augroup END
+
+" No backup files, and keep swap files out of your project directories
+" (so git status stays clean). The trailing // makes names unique per path.
+set nobackup nowritebackup
+set directory=~/.vim/swap//
+if !isdirectory(expand('~/.vim/swap'))
+  call mkdir(expand('~/.vim/swap'), 'p', 0700)
+endif
+
+" Faster CursorHold events (default is 4000 ms); used by plugins and autoread.
+set updatetime=300
+
