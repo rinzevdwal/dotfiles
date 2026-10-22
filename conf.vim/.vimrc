@@ -2,13 +2,14 @@
 " .vimrc
 " ===============================================================
 " Sections:
-"   1. Encoding              8. Editing
-"   2. Vim defaults          9. Searching
-"   3. Leader key           10. Files, undo and swap
-"   4. Appearance           11. Windows and buffers
-"   5. Whitespace markers   12. General mappings
-"   6. Terminal and timing  13. fzf
-"   7. Indentation          14. LazyGit
+"   1. Encoding              9. Editing
+"   2. Vim defaults         10. Searching
+"   3. Leader key           11. Files, undo and swap
+"   4. Appearance           12. Windows and buffers
+"   5. Statusline           13. General mappings
+"   6. Whitespace markers   14. fzf
+"   7. Terminal and timing  15. LazyGit
+"   8. Indentation
 "
 " Keybindings follow LazyVim where Vim allows it. <leader> is Space.
 
@@ -43,9 +44,6 @@ let mapleader = " "
 set termguicolors
 colorscheme catppuccin_mocha
 
-" Always show the statusline (Vim has no global statusline like Neovim).
-set laststatus=2
-
 " Absolute number on the current line, relative numbers elsewhere.
 set number relativenumber
 
@@ -61,7 +59,77 @@ set scrolloff=8
 set sidescrolloff=8
 
 " ---------------------------------------------------------------
-" 5. Whitespace markers
+" 5. Statusline (Catppuccin Mocha)
+" ---------------------------------------------------------------
+" Layout: [MODE] file flags ........ filetype  percent  line:col
+" The mode block changes color per mode, like lualine in LazyVim.
+" Inactive windows only show the file name, dimmed.
+
+" Always show the statusline, and hide Vim's own "-- INSERT --" message
+" because the mode is shown in the statusline now.
+set laststatus=2
+set noshowmode
+
+" Mode -> [label, highlight group]. Keyed by the first character of mode().
+let s:modes = {
+      \ 'n':    ['NORMAL',  'StlNormal'],
+      \ 'i':    ['INSERT',  'StlInsert'],
+      \ 'v':    ['VISUAL',  'StlVisual'],
+      \ 'V':    ['V-LINE',  'StlVisual'],
+      \ "\<C-v>": ['V-BLOCK', 'StlVisual'],
+      \ 's':    ['SELECT',  'StlVisual'],
+      \ 'S':    ['S-LINE',  'StlVisual'],
+      \ 'R':    ['REPLACE', 'StlReplace'],
+      \ 'c':    ['COMMAND', 'StlCommand'],
+      \ 't':    ['TERMINAL', 'StlTerminal'],
+      \ }
+
+" Colors: Catppuccin Mocha. Mode blocks use dark text on an accent color.
+"   mantle #181825   surface0 #313244   overlay0 #6c7086   text #cdd6f4
+"   blue #89b4fa  green #a6e3a1  mauve #cba6f7  red #f38ba8
+"   peach #fab387  teal #94e2d5
+function! s:StatuslineColors() abort
+  highlight StatusLine   guifg=#cdd6f4 guibg=#181825 gui=NONE cterm=NONE
+  highlight StatusLineNC guifg=#6c7086 guibg=#181825 gui=NONE cterm=NONE
+  highlight StatusLineTerm   guifg=#cdd6f4 guibg=#181825 gui=NONE cterm=NONE
+  highlight StatusLineTermNC guifg=#6c7086 guibg=#181825 gui=NONE cterm=NONE
+  highlight StlMid       guifg=#cdd6f4 guibg=#313244 gui=NONE
+  highlight StlNormal    guifg=#1e1e2e guibg=#89b4fa gui=bold
+  highlight StlInsert    guifg=#1e1e2e guibg=#a6e3a1 gui=bold
+  highlight StlVisual    guifg=#1e1e2e guibg=#cba6f7 gui=bold
+  highlight StlReplace   guifg=#1e1e2e guibg=#f38ba8 gui=bold
+  highlight StlCommand   guifg=#1e1e2e guibg=#fab387 gui=bold
+  highlight StlTerminal  guifg=#1e1e2e guibg=#94e2d5 gui=bold
+endfunction
+
+" Builds the statusline for the window being drawn.
+" g:statusline_winid is the window Vim is currently drawing the line for.
+function! Statusline() abort
+  if g:statusline_winid != win_getid()
+    return ' %f %m'
+  endif
+
+  let [l:label, l:group] = get(s:modes, mode()[0], ['NORMAL', 'StlNormal'])
+  return '%#' . l:group . '# ' . l:label . ' '
+        \ . '%#StlMid# %f%m%r%h%w '
+        \ . '%#StatusLine#%='
+        \ . '%#StlMid# %{&filetype} '
+        \ . '%#' . l:group . '# %p%% '
+        \ . '%#' . l:group . '# %l:%c '
+endfunction
+
+set statusline=%!Statusline()
+
+" Apply the colors now, and again whenever a colorscheme is (re)loaded,
+" because every colorscheme starts with `hi clear`.
+call s:StatuslineColors()
+augroup my_statusline
+  autocmd!
+  autocmd ColorScheme * call s:StatuslineColors()
+augroup END
+
+" ---------------------------------------------------------------
+" 6. Whitespace markers
 " ---------------------------------------------------------------
 " Uses :let with a double-quoted string so the \u escapes are evaluated
 " (:set would take them literally).
@@ -84,7 +152,7 @@ highlight SpecialKey ctermfg=8 guifg=#585b70
 highlight NonText ctermfg=8 guifg=#585b70
 
 " ---------------------------------------------------------------
-" 6. Terminal and timing
+" 7. Terminal and timing
 " ---------------------------------------------------------------
 " How long Vim waits for the next key of a mapping such as <Space>sg.
 set timeoutlen=500
@@ -108,7 +176,7 @@ let &t_EI = "\e[2 q"
 let &t_SR = "\e[4 q"
 
 " ---------------------------------------------------------------
-" 7. Indentation and formatting
+" 8. Indentation and formatting
 " ---------------------------------------------------------------
 " Default: 4 spaces per indent level, Tab inserts spaces.
 set expandtab shiftwidth=4 softtabstop=4
@@ -128,7 +196,7 @@ augroup my_formatoptions
 augroup END
 
 " ---------------------------------------------------------------
-" 8. Editing
+" 9. Editing
 " ---------------------------------------------------------------
 " Use the system clipboard for all yanks and pastes.
 set clipboard=unnamedplus
@@ -157,7 +225,7 @@ augroup my_spell
 augroup END
 
 " ---------------------------------------------------------------
-" 9. Searching
+" 10. Searching
 " ---------------------------------------------------------------
 " Case-insensitive by default ("foo" matches foo, Foo, FOO)...
 set ignorecase
@@ -181,7 +249,7 @@ set grepprg=rg\ --vimgrep
 set grepformat=%f:%l:%c:%m
 
 " ---------------------------------------------------------------
-" 10. Files, undo and swap
+" 11. Files, undo and swap
 " ---------------------------------------------------------------
 " Ask instead of failing on :q with unsaved changes, and save
 " automatically before commands such as :next and :make.
@@ -217,7 +285,7 @@ if !isdirectory(expand(&undodir))
 endif
 
 " ---------------------------------------------------------------
-" 11. Windows and buffers
+" 12. Windows and buffers
 " ---------------------------------------------------------------
 " New splits open to the right / below instead of left / above.
 set splitbelow splitright
@@ -248,7 +316,7 @@ nnoremap <leader>bb :e #<CR>
 nnoremap <leader>bd :bdelete<CR>
 
 " ---------------------------------------------------------------
-" 12. General mappings
+" 13. General mappings
 " ---------------------------------------------------------------
 " Y yanks to the end of the line, like D and C (default: same as yy).
 nnoremap Y y$
@@ -279,7 +347,7 @@ nnoremap <leader>qq :qa<CR>
 cnoremap w!! w !sudo tee % >/dev/null
 
 " ---------------------------------------------------------------
-" 13. fzf (fzf.vim)
+" 14. fzf (fzf.vim)
 " ---------------------------------------------------------------
 " Needs: fzf, the fzf and fzf.vim plugins in ~/.vim/pack/plugins/start/,
 " and ripgrep (for :Rg and :RG).
@@ -342,7 +410,7 @@ nnoremap <leader>gc      :Commits<CR>
 nnoremap <leader>gs      :GFiles?<CR>
 
 " ---------------------------------------------------------------
-" 14. LazyGit popup
+" 15. LazyGit popup
 " ---------------------------------------------------------------
 " <leader>gg opens lazygit in a centered popup with rounded borders.
 " The popup scales with the Vim window and is removed (together with its
