@@ -146,18 +146,7 @@ cnoremap w!! w !sudo tee % >/dev/null
 "   Esc                                close
 
 " Files (Ctrl-p replaces "move up a line", which k already does)
-nnoremap <C-p>      :Files<CR>
-nnoremap <leader>f  :Files<CR>
-nnoremap <leader>gf :GFiles<CR>
 
-" Buffers and history
-nnoremap <leader>b  :Buffers<CR>
-nnoremap <leader>h  :History<CR>
-
-" Search text
-nnoremap <leader>/  :BLines<CR>
-nnoremap <leader>l  :Lines<CR>
-nnoremap <leader>*  :Rg <C-r><C-w><CR>
 
 " Live ripgrep: rg re-runs on every keystroke (from the fzf.vim README).
 " :RG [pattern] runs it, :RG! runs it fullscreen.
@@ -170,11 +159,8 @@ function! RipgrepFzf(query, fullscreen)
 endfunction
 
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
-nnoremap <leader>rg :RG<CR>
 
-" Misc
-nnoremap <leader>c  :Commands<CR>
-nnoremap <leader>m  :Marks<CR>
+
 
 " ---------------------------------------------------------------
 " LazyGit popup
@@ -347,4 +333,32 @@ nnoremap <silent> <C-s> :w<CR>
 inoremap <silent> <C-s> <Esc>:w<CR>
 xnoremap <silent> <C-s> <Esc>:w<CR>
 snoremap <silent> <C-s> <Esc>:w<CR>
+
+" ---------------------------------------------------------------
+" Key bindings
+" ---------------------------------------------------------------
+
+" Files (all from cwd)
+nnoremap <leader><space> :Files<CR>
+nnoremap <leader>ff      :Files<CR>
+nnoremap <leader>fg      :GFiles<CR>
+nnoremap <leader>fr      :History<CR>
+nnoremap <leader>fb      :Buffers<CR>
+nnoremap <leader>,       :Buffers<CR>
+
+" Search
+nnoremap <leader>/       :RG<CR>
+nnoremap <leader>sg      :RG<CR>
+nnoremap <leader>sw      :Rg <C-r><C-w><CR>
+nnoremap <leader>sb      :BLines<CR>
+nnoremap <leader>sC      :Commands<CR>
+nnoremap <leader>sm      :Marks<CR>
+nnoremap <leader>sk      :Maps<CR>
+nnoremap <leader>sh      :Helptags<CR>
+nnoremap <leader>:       :History:<CR>
+
+" Git
+nnoremap <leader>gc      :Commits<CR>
+nnoremap <leader>gs      :GFiles?<CR>
+nnoremap <leader>gg      :call <SID>LazyGit()<CR>
 
