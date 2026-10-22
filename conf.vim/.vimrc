@@ -177,62 +177,50 @@ nnoremap <leader>c  :Commands<CR>
 nnoremap <leader>m  :Marks<CR>
 
 " ---------------------------------------------------------------
-" Git / LazyGit floating window
+" LazyGit popup
 " ---------------------------------------------------------------
+" <leader>g opens lazygit in a centered popup with rounded borders.
+" The popup and its terminal buffer are removed when lazygit exits.
+" Needs: lazygit in $PATH, Vim built with +terminal and +popupwin.
 
-let s:lazygit_popup = -1
-let s:lazygit_buf = -1
+let s:popup = 0
+let s:buf = 0
 
-function! s:LazyGitExit(job, status)
-  if s:lazygit_popup > 0
-    call popup_close(s:lazygit_popup)
-    let s:lazygit_popup = -1
-  endif
-
-  if s:lazygit_buf > 0 && bufexists(s:lazygit_buf)
-    execute 'bwipeout! ' . s:lazygit_buf
-    let s:lazygit_buf = -1
+" Called when lazygit exits: close the popup and wipe the terminal buffer.
+function! s:OnExit(job, status) abort
+  call popup_close(s:popup)
+  if bufexists(s:buf)
+    execute 'bwipeout!' s:buf
   endif
 endfunction
 
-function! LazyGit()
+function! s:LazyGit() abort
   if !executable('lazygit')
-    echoerr 'lazygit is not installed or not in PATH'
+    echoerr 'lazygit is not installed or not in $PATH'
     return
   endif
-
   if !has('terminal') || !has('popupwin')
-    echoerr 'LazyGit requires Vim +terminal and +popupwin'
+    echoerr 'LazyGit requires Vim with +terminal and +popupwin'
     return
   endif
 
-  let s:lazygit_buf = term_start('lazygit', {
-        \ 'hidden': 1,
-        \ 'exit_cb': function('s:LazyGitExit')
-        \ })
-
-  if s:lazygit_buf <= 0
-    echoerr 'Failed to start LazyGit terminal'
-    return
-  endif
+  let s:buf = term_start('lazygit', {'hidden': 1, 'exit_cb': function('s:OnExit')})
 
   let l:width = min([&columns - 4, 110])
   let l:height = min([&lines - 6, 30])
 
-  let s:lazygit_popup = popup_create(s:lazygit_buf, {
+  " borderchars order: top, right, bottom, left,
+  "                    top-left, top-right, bottom-right, bottom-left
+  let s:popup = popup_create(s:buf, {
         \ 'pos': 'center',
         \ 'minwidth': l:width,
         \ 'maxwidth': l:width,
         \ 'minheight': l:height,
         \ 'maxheight': l:height,
         \ 'border': [1],
-        \ 'borderchars': ['─', '│', '─', '│', '╭', '╮', '╯', '╰'],
-        \ 'mapping': 0,
-        \ 'cursorline': 0
+        \ 'borderchars': ["\u2500", "\u2502", "\u2500", "\u2502",
+        \                 "\u256d", "\u256e", "\u256f", "\u2570"],
         \ })
-
-  call term_setkill(s:lazygit_buf, 'kill')
-  startinsert
 endfunction
 
-nnoremap <leader>g :call LazyGit()<CR>
+nnoremap <silent> <leader>g :call <SID>LazyGit()<CR>
