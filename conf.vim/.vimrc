@@ -77,6 +77,13 @@ set hlsearch
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 
 " ---------------------------------------------------------------
+" Timing
+" ---------------------------------------------------------------
+" Time to wait for the second key of a mapping such as <Esc><Esc>.
+" (defaults.vim already sets ttimeout/ttimeoutlen for terminal key codes.)
+set timeoutlen=500
+
+" ---------------------------------------------------------------
 " Editing behavior
 " ---------------------------------------------------------------
 " Persistent undo: you can still undo after closing and reopening a file.
