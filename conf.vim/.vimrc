@@ -175,3 +175,64 @@ nnoremap <leader>rg :RG<CR>
 " Misc
 nnoremap <leader>c  :Commands<CR>
 nnoremap <leader>m  :Marks<CR>
+
+" ---------------------------------------------------------------
+" Git / LazyGit floating window
+" ---------------------------------------------------------------
+
+let s:lazygit_popup = -1
+let s:lazygit_buf = -1
+
+function! s:LazyGitExit(job, status)
+  if s:lazygit_popup > 0
+    call popup_close(s:lazygit_popup)
+    let s:lazygit_popup = -1
+  endif
+
+  if s:lazygit_buf > 0 && bufexists(s:lazygit_buf)
+    execute 'bwipeout! ' . s:lazygit_buf
+    let s:lazygit_buf = -1
+  endif
+endfunction
+
+function! LazyGit()
+  if !executable('lazygit')
+    echoerr 'lazygit is not installed or not in PATH'
+    return
+  endif
+
+  if !has('terminal') || !has('popupwin')
+    echoerr 'LazyGit requires Vim +terminal and +popupwin'
+    return
+  endif
+
+  let s:lazygit_buf = term_start('lazygit', {
+        \ 'hidden': 1,
+        \ 'exit_cb': function('s:LazyGitExit')
+        \ })
+
+  if s:lazygit_buf <= 0
+    echoerr 'Failed to start LazyGit terminal'
+    return
+  endif
+
+  let l:width = min([&columns - 4, 110])
+  let l:height = min([&lines - 6, 30])
+
+  let s:lazygit_popup = popup_create(s:lazygit_buf, {
+        \ 'pos': 'center',
+        \ 'minwidth': l:width,
+        \ 'maxwidth': l:width,
+        \ 'minheight': l:height,
+        \ 'maxheight': l:height,
+        \ 'border': [1],
+        \ 'borderchars': ['─', '│', '─', '│', '╭', '╮', '╯', '╰'],
+        \ 'mapping': 0,
+        \ 'cursorline': 0
+        \ })
+
+  call term_setkill(s:lazygit_buf, 'kill')
+  startinsert
+endfunction
+
+nnoremap <leader>g :call LazyGit()<CR>
