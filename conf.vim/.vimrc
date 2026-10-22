@@ -122,9 +122,9 @@ vnoremap > >gv
 " Forgot sudo? :w!! saves the file as root.
 cnoremap w!! w !sudo tee % >/dev/null
 
-" ===============================================================
+" ---------------------------------------------------------------
 " fzf (fzf.vim)
-" ===============================================================
+" ---------------------------------------------------------------
 " Needs: fzf, fzf + fzf.vim in ~/.vim/pack/plugins/start/, ripgrep (:Rg)
 "
 " Mappings (<leader> = Space):
