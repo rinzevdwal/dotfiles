@@ -314,3 +314,15 @@ let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 let &t_SR = "\e[4 q"
 
+" ---------------------------------------------------------------
+" More mappings
+" ---------------------------------------------------------------
+" Y yanks to end of line, consistent with D and C (default is the same as yy).
+nnoremap Y y$
+
+" Move between windows with Ctrl-h/j/k/l instead of Ctrl-w h/j/k/l.
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
