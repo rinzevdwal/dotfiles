@@ -381,3 +381,24 @@ set laststatus=2
 set grepprg=rg\ --vimgrep
 set grepformat=%f:%1:%c:%m
 
+" ---------------------------------------------------------------
+" LazyVim-style mappings
+" ---------------------------------------------------------------
+" Search direction: n is always forward, N always backward, and open folds.
+nnoremap <expr> n 'Nn'[v:searchforward] . 'zv'
+nnoremap <expr> N 'nN'[v:searchforward] . 'zv'
+
+" Buffers (shadow H/L, which jump to the top/bottom of the screen)
+nnoremap <S-h>      :bprevious<CR>
+nnoremap <S-l>      :bnext<CR>
+nnoremap [b         :bprevious<CR>
+nnoremap ]b         :bnext<CR>
+nnoremap <leader>bb :e #<CR>
+nnoremap <leader>bd :bdelete<CR>
+
+" Windows
+nnoremap <leader>wd <C-w>c
+nnoremap <leader>ww <C-w>p
+
+" Quit all
+nnoremap <leader>qq :qa<CR>
