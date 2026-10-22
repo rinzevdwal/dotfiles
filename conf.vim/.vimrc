@@ -103,6 +103,10 @@ set wildmode=longest:full,full
 " ---------------------------------------------------------------
 " Mappings
 " ---------------------------------------------------------------
+" <leader> is the prefix for custom mappings (default \). Must be set
+" before any <leader> mapping. Delete this line to keep the default.
+let mapleader = " "
+
 " Keep the selection after indenting with < or > in visual mode,
 " so you can press them repeatedly.
 vnoremap < <gv
@@ -133,10 +137,6 @@ cnoremap w!! w !sudo tee % >/dev/null
 "   Tab                                select multiple entries
 "   Ctrl-j / Ctrl-k                    move down / up
 "   Esc                                close
-
-" <leader> is the prefix for custom mappings (default \). Must be set
-" before any <leader> mapping. Delete this line to keep the default.
-let mapleader = " "
 
 " Files (Ctrl-p replaces "move up a line", which k already does)
 nnoremap <C-p>      :Files<CR>
