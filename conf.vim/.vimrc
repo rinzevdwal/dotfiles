@@ -1,47 +1,26 @@
 " ===============================================================
-" .vimrc
+" .vimrc  (<leader> is Space; keybindings follow LazyVim where Vim allows)
 " ===============================================================
-" Sections:
-"   1. Encoding              9. Editing
-"   2. Vim defaults         10. Searching
-"   3. Leader key           11. Files, undo and swap
-"   4. Appearance           12. Windows and buffers
-"   5. Statusline           13. General mappings
-"   6. Whitespace markers   14. fzf
-"   7. Terminal and timing  15. LazyGit
-"   8. Indentation          16. vim-signify
-"
-" Keybindings follow LazyVim where Vim allows it. <leader> is Space.
+" Overview of all sections:  :g/^" ---- /p
 
-" ---------------------------------------------------------------
-" 1. Encoding
-" ---------------------------------------------------------------
+" ---- Encoding -------------------------------------------------
 " Must come first so the rest of the file is read as UTF-8.
 set encoding=utf-8
 scriptencoding utf-8
 
-" ---------------------------------------------------------------
-" 2. Vim defaults
-" ---------------------------------------------------------------
+" ---- Vim defaults ---------------------------------------------
 " Vim skips its built-in defaults (syntax on, filetype plugin indent on,
 " incsearch, wildmenu, scrolloff=5, ttimeout, last cursor position, ...)
 " as soon as a ~/.vimrc exists, so load them explicitly. Keep this above
 " your own settings so that yours override them.
 source $VIMRUNTIME/defaults.vim
 
-" ---------------------------------------------------------------
-" 3. Leader key
-" ---------------------------------------------------------------
+" ---- Leader key -----------------------------------------------
 " Prefix for custom mappings (default \). Must be set before any
 " <leader> mapping in this file.
 let mapleader = " "
 
-" vim-which-key: pressing Space shows a popup with the available keys.
-nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
-
-" ---------------------------------------------------------------
-" 4. Appearance
-" ---------------------------------------------------------------
+" ---- Appearance -----------------------------------------------
 " 24-bit colors in the terminal (the Catppuccin theme only defines
 " GUI colors, so it needs this).
 set termguicolors
@@ -61,12 +40,10 @@ set linebreak
 set scrolloff=8
 set sidescrolloff=8
 
-" ---------------------------------------------------------------
-" 5. Statusline (Catppuccin Mocha)
-" ---------------------------------------------------------------
-" Layout: [MODE] file flags ........ filetype  percent  line:col
+" ---- Statusline (Catppuccin Mocha) ----------------------------
+" Layout: [MODE] branch | file flags ........ filetype  percent  line:col
 " The mode block changes color per mode, like lualine in LazyVim.
-" Inactive windows only show the file name, dimmed.
+" Inactive windows only show the file name.
 
 " Always show the statusline, and hide Vim's own "-- INSERT --" message
 " because the mode is shown in the statusline now.
@@ -134,9 +111,7 @@ augroup my_statusline
   autocmd ColorScheme * call s:StatuslineColors()
 augroup END
 
-" ---------------------------------------------------------------
-" 6. Whitespace markers
-" ---------------------------------------------------------------
+" ---- Whitespace markers ---------------------------------------
 " Uses :let with a double-quoted string so the \u escapes are evaluated
 " (:set would take them literally).
 "   tab      -> arrow followed by a space as fill
@@ -157,9 +132,7 @@ highlight Whitespace ctermfg=8 guifg=#585b70
 highlight SpecialKey ctermfg=8 guifg=#585b70
 highlight NonText ctermfg=8 guifg=#585b70
 
-" ---------------------------------------------------------------
-" 7. Terminal and timing
-" ---------------------------------------------------------------
+" ---- Terminal and timing --------------------------------------
 " How long Vim waits for the next key of a mapping such as <Space>sg.
 set timeoutlen=500
 
@@ -181,10 +154,9 @@ let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 let &t_SR = "\e[4 q"
 
-" ---------------------------------------------------------------
-" 8. Indentation and formatting
-" ---------------------------------------------------------------
+" ---- Indentation and formatting -------------------------------
 " Default: 4 spaces per indent level, Tab inserts spaces.
+" softtabstop=-1 follows shiftwidth (vim-sleuth adjusts shiftwidth per file).
 set expandtab shiftwidth=4 softtabstop=-1
 
 " Round indents made with < and > to a multiple of shiftwidth.
@@ -201,9 +173,7 @@ augroup my_formatoptions
   autocmd FileType * setlocal formatoptions-=o
 augroup END
 
-" ---------------------------------------------------------------
-" 9. Editing
-" ---------------------------------------------------------------
+" ---- Editing --------------------------------------------------
 " Use the system clipboard for all yanks and pastes.
 set clipboard=unnamedplus
 
@@ -230,9 +200,7 @@ augroup my_spell
   autocmd FileType gitcommit,markdown,text setlocal spell spelllang=en
 augroup END
 
-" ---------------------------------------------------------------
-" 10. Searching
-" ---------------------------------------------------------------
+" ---- Searching ------------------------------------------------
 " Case-insensitive by default ("foo" matches foo, Foo, FOO)...
 set ignorecase
 " ...unless the pattern contains an uppercase letter, then it is
@@ -254,9 +222,7 @@ nnoremap <expr> N 'nN'[v:searchforward] . 'zv'
 set grepprg=rg\ --vimgrep
 set grepformat=%f:%l:%c:%m
 
-" ---------------------------------------------------------------
-" 11. Files, undo and swap
-" ---------------------------------------------------------------
+" ---- Files, undo and swap -------------------------------------
 " Ask instead of failing on :q with unsaved changes, and save
 " automatically before commands such as :next and :make.
 set confirm
@@ -290,9 +256,7 @@ if !isdirectory(expand(&undodir))
   call mkdir(expand(&undodir), 'p', 0700)
 endif
 
-" ---------------------------------------------------------------
-" 12. Windows and buffers
-" ---------------------------------------------------------------
+" ---- Windows and buffers --------------------------------------
 " New splits open to the right / below instead of left / above.
 set splitbelow splitright
 
@@ -321,9 +285,7 @@ nnoremap ]b    :bnext<CR>
 nnoremap <leader>bb :e #<CR>
 nnoremap <leader>bd :bdelete<CR>
 
-" ---------------------------------------------------------------
-" 13. General mappings
-" ---------------------------------------------------------------
+" ---- General mappings -----------------------------------------
 " Y yanks to the end of the line, like D and C (default: same as yy).
 nnoremap Y y$
 
@@ -352,33 +314,17 @@ nnoremap <leader>qq :qa<CR>
 " Forgot sudo? :w!! saves the file as root.
 cnoremap w!! w !sudo tee % >/dev/null
 
-" ---------------------------------------------------------------
-" 14. fzf (fzf.vim)
-" ---------------------------------------------------------------
+" ---- fzf (fzf.vim) --------------------------------------------
 " Needs: fzf, the fzf and fzf.vim plugins in ~/.vim/pack/plugins/start/,
 " and ripgrep (for :Rg and :RG).
-"
-" Mappings (<leader> = Space):
-"   Space Space / Space ff   files in the working directory
-"   Space fg                 git-tracked files
-"   Space fr                 recent files
-"   Space fb / Space ,       open buffers
-"   Space / / Space sg       live ripgrep (updates as you type)
-"   Space sw                 grep the word under the cursor
-"   Space sb                 lines in the current buffer
-"   Space sC                 commands
-"   Space sm                 marks
-"   Space sk                 key mappings
-"   Space sh                 help tags
-"   Space :                  command history
-"   Space gc                 git commits
-"   Space gs                 git status (changed files)
 "
 " Inside any fzf window:
 "   Enter / Ctrl-x / Ctrl-v / Ctrl-t   open here / split / vsplit / tab
 "   Tab                                select multiple entries
 "   Ctrl-j / Ctrl-k                    move down / up
 "   Esc                                close
+"
+" The mappings are documented in the which-key section at the end.
 
 " Live ripgrep: rg re-runs on every keystroke (from the fzf.vim README).
 " :RG [pattern] runs it, :RG! runs it fullscreen.
@@ -411,13 +357,11 @@ nnoremap <leader>sk      :Maps<CR>
 nnoremap <leader>sh      :Helptags<CR>
 nnoremap <leader>:       :History:<CR>
 
-" Git
+" Git (fzf pickers)
 nnoremap <leader>gc      :Commits<CR>
 nnoremap <leader>gs      :GFiles?<CR>
 
-" ---------------------------------------------------------------
-" 15. LazyGit popup
-" ---------------------------------------------------------------
+" ---- LazyGit popup --------------------------------------------
 " <leader>gg opens lazygit in a centered popup with rounded borders.
 " The popup scales with the Vim window and is removed (together with its
 " terminal buffer) when lazygit exits.
@@ -504,10 +448,7 @@ augroup END
 
 nnoremap <silent> <leader>gg :call <SID>LazyGit()<CR>
 
-" ---------------------------------------------------------------
-" 16. Git signs and fugitive
-" ---------------------------------------------------------------
-
+" ---- Git signs (vim-signify) ----------------------------------
 " Always reserve the sign column so the text doesn't shift when signs appear.
 set signcolumn=yes
 
@@ -520,9 +461,9 @@ let g:signify_sign_delete_first_line = "\u2594"
 " Signify links its signs to DiffAdd/DiffChange/DiffDelete, which in the
 " Catppuccin theme are solid colored blocks. Use colored foreground only.
 function! s:SignifyColors() abort
-  highlight SignifySignAdd    guifg=#a6e3a1 guibg=NONE
-  highlight SignifySignChange guifg=#f9e2af guibg=NONE
-  highlight SignifySignDelete guifg=#f38ba8 guibg=NONE
+  highlight SignifySignAdd          guifg=#a6e3a1 guibg=NONE
+  highlight SignifySignChange       guifg=#f9e2af guibg=NONE
+  highlight SignifySignDelete       guifg=#f38ba8 guibg=NONE
   highlight SignifySignChangeDelete guifg=#f9e2af guibg=NONE
 endfunction
 call s:SignifyColors()
@@ -535,13 +476,7 @@ augroup END
 nmap ]h <plug>(signify-next-hunk)
 nmap [h <plug>(signify-prev-hunk)
 
-" vim-fugitive
-nnoremap <leader>gb :Git blame<CR>
-nnoremap <leader>gd :Gvdiffsplit<CR>
-nnoremap <leader>gl :Git log --oneline<CR>
-nnoremap <leader>gf :0Gclog<CR>
-
-" Hunk actions
+" Hunk actions: preview, undo, diff the whole file.
 nnoremap <leader>ghp :SignifyHunkDiff<CR>
 nnoremap <leader>ghr :SignifyHunkUndo<CR>
 nnoremap <leader>ghd :SignifyDiff<CR>
@@ -550,12 +485,19 @@ nnoremap <leader>ghd :SignifyDiff<CR>
 omap ih <plug>(signify-motion-inner-pending)
 xmap ih <plug>(signify-motion-inner-visual)
 
-" ---------------------------------------------------------------
-" 17. which-key descriptions
-" ---------------------------------------------------------------
-" Text shown in the popup after pressing Space. Keys not listed here
-" still appear, with their command as the description.
-" 'name' with a leading + marks a group of keys.
+" ---- Git commands (vim-fugitive) ------------------------------
+nnoremap <leader>gb :Git blame<CR>
+nnoremap <leader>gd :Gvdiffsplit<CR>
+nnoremap <leader>gl :Git log --oneline<CR>
+nnoremap <leader>gf :0Gclog<CR>
+
+" ---- Which-key (vim-which-key) --------------------------------
+" Pressing Space shows a popup with the available keys and the
+" descriptions below. Keys missing from the dictionary still appear,
+" with their command as the description. 'name' with a leading + marks
+" a group of keys.
+nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
+
 let g:which_key_map = {}
 
 let g:which_key_map[' '] = 'Find files'
@@ -623,4 +565,3 @@ augroup my_which_key
   autocmd!
   autocmd VimEnter * call which_key#register('<Space>', 'g:which_key_map')
 augroup END
-
