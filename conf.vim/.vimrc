@@ -35,6 +35,7 @@ source $VIMRUNTIME/defaults.vim
 " Prefix for custom mappings (default \). Must be set before any
 " <leader> mapping in this file.
 let mapleader = " "
+nnoremap <silent> <leader> :<c-u>WhichKey <Space><CR>
 
 " ---------------------------------------------------------------
 " 4. Appearance
