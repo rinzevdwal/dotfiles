@@ -9,7 +9,7 @@
 "   5. Statusline           13. General mappings
 "   6. Whitespace markers   14. fzf
 "   7. Terminal and timing  15. LazyGit
-"   8. Indentation
+"   8. Indentation          16. vim-signify
 "
 " Keybindings follow LazyVim where Vim allows it. <leader> is Space.
 
@@ -497,3 +497,34 @@ augroup my_lazygit
 augroup END
 
 nnoremap <silent> <leader>gg :call <SID>LazyGit()<CR>
+
+" ---------------------------------------------------------------
+" 16. Vim signify
+" ---------------------------------------------------------------
+
+" Always reserve the sign column so the text doesn't shift when signs appear.
+set signcolumn=yes
+
+" Git signs: a thin bar like LazyVim's gitsigns.
+let g:signify_sign_add               = "\u258e"
+let g:signify_sign_change            = "\u258e"
+let g:signify_sign_delete            = "\u2581"
+let g:signify_sign_delete_first_line = "\u2594"
+
+" Signify links its signs to DiffAdd/DiffChange/DiffDelete, which in the
+" Catppuccin theme are solid colored blocks. Use colored foreground only.
+function! s:SignifyColors() abort
+  highlight SignifySignAdd    guifg=#a6e3a1 guibg=NONE
+  highlight SignifySignChange guifg=#f9e2af guibg=NONE
+  highlight SignifySignDelete guifg=#f38ba8 guibg=NONE
+endfunction
+call s:SignifyColors()
+augroup my_signify
+  autocmd!
+  autocmd ColorScheme * call s:SignifyColors()
+augroup END
+
+" Jump between changed hunks.
+nmap ]h <plug>(signify-next-hunk)
+nmap [h <plug>(signify-prev-hunk)
+
