@@ -618,9 +618,9 @@ let g:which_key_map.q = {
       \ 'q': 'Quit all',
       \ }
 
-" Plugins load after the vimrc, so register when which-key announces itself.
+" Plugins load after the vimrc, so register once startup is finished.
 augroup my_which_key
   autocmd!
-  autocmd User vim-which-key call which_key#register('<Space>', 'g:which_key_map')
+  autocmd VimEnter * call which_key#register('<Space>', 'g:which_key_map')
 augroup END
 
