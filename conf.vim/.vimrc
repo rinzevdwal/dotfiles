@@ -113,8 +113,11 @@ function! Statusline() abort
   endif
 
   let [l:label, l:group] = get(s:modes, mode()[0], ['NORMAL', 'StlNormal'])
+  " Branch name from vim-fugitive; % is escaped for the statusline format.
+  let l:head = exists('*FugitiveHead') ? FugitiveHead() : ''
+  let l:branch = empty(l:head) ? '' : substitute(l:head, '%', '%%', 'g') . " \u2502 "
   return '%#' . l:group . '# ' . l:label . ' '
-        \ . '%#StlMid# %f%m%r%h%w '
+        \ . '%#StlMid# ' . l:branch . '%f%m%r%h%w '
         \ . '%#StatusLine#%='
         \ . '%#StlMid# %{&filetype} '
         \ . '%#' . l:group . '# %p%% '
