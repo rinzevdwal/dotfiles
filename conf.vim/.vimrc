@@ -531,3 +531,77 @@ augroup END
 nmap ]h <plug>(signify-next-hunk)
 nmap [h <plug>(signify-prev-hunk)
 
+" ---------------------------------------------------------------
+" 17. which-key descriptions
+" ---------------------------------------------------------------
+" Text shown in the popup after pressing Space. Keys not listed here
+" still appear, with their command as the description.
+" 'name' with a leading + marks a group of keys.
+let g:which_key_map = {}
+
+let g:which_key_map[' '] = 'Find files'
+let g:which_key_map[','] = 'Switch buffer'
+let g:which_key_map['/'] = 'Live grep (ripgrep)'
+let g:which_key_map[':'] = 'Command history'
+let g:which_key_map['-'] = 'Split window below'
+let g:which_key_map['|'] = 'Split window right'
+
+let g:which_key_map.f = {
+      \ 'name': '+find',
+      \ 'f': 'Find files',
+      \ 'g': 'Git files',
+      \ 'r': 'Recent files',
+      \ 'b': 'Buffers',
+      \ }
+
+let g:which_key_map.s = {
+      \ 'name': '+search',
+      \ 'g': 'Live grep (ripgrep)',
+      \ 'w': 'Grep word under cursor',
+      \ 'b': 'Lines in current buffer',
+      \ 'C': 'Commands',
+      \ 'm': 'Marks',
+      \ 'k': 'Key mappings',
+      \ 'h': 'Help tags',
+      \ }
+
+let g:which_key_map.g = {
+      \ 'name': '+git',
+      \ 'g': 'LazyGit',
+      \ 'c': 'Commits',
+      \ 's': 'Changed files',
+      \ 'b': 'Blame',
+      \ 'd': 'Diff against index',
+      \ 'l': 'Log',
+      \ 'f': 'File history',
+      \ 'h': {
+      \   'name': '+hunks',
+      \   'p': 'Preview hunk',
+      \   'r': 'Reset hunk',
+      \   'd': 'Diff whole file',
+      \   },
+      \ }
+
+let g:which_key_map.b = {
+      \ 'name': '+buffer',
+      \ 'b': 'Alternate buffer',
+      \ 'd': 'Delete buffer',
+      \ }
+
+let g:which_key_map.w = {
+      \ 'name': '+window',
+      \ 'w': 'Previous window',
+      \ 'd': 'Close window',
+      \ }
+
+let g:which_key_map.q = {
+      \ 'name': '+quit',
+      \ 'q': 'Quit all',
+      \ }
+
+" Plugins load after the vimrc, so register when which-key announces itself.
+augroup my_which_key
+  autocmd!
+  autocmd User vim-which-key call which_key#register('<Space>', 'g:which_key_map')
+augroup END
+
