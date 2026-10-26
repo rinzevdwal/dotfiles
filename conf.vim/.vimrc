@@ -185,7 +185,7 @@ let &t_SR = "\e[4 q"
 " 8. Indentation and formatting
 " ---------------------------------------------------------------
 " Default: 4 spaces per indent level, Tab inserts spaces.
-set expandtab shiftwidth=4 softtabstop=4
+set expandtab shiftwidth=4 softtabstop=-1
 
 " Round indents made with < and > to a multiple of shiftwidth.
 set shiftround
