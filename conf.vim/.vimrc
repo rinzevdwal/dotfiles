@@ -505,7 +505,7 @@ augroup END
 nnoremap <silent> <leader>gg :call <SID>LazyGit()<CR>
 
 " ---------------------------------------------------------------
-" 16. Vim signify
+" 16. Git signs and fugitive
 " ---------------------------------------------------------------
 
 " Always reserve the sign column so the text doesn't shift when signs appear.
@@ -523,6 +523,7 @@ function! s:SignifyColors() abort
   highlight SignifySignAdd    guifg=#a6e3a1 guibg=NONE
   highlight SignifySignChange guifg=#f9e2af guibg=NONE
   highlight SignifySignDelete guifg=#f38ba8 guibg=NONE
+  highlight SignifySignChangeDelete guifg=#f9e2af guibg=NONE
 endfunction
 call s:SignifyColors()
 augroup my_signify
@@ -533,6 +534,21 @@ augroup END
 " Jump between changed hunks.
 nmap ]h <plug>(signify-next-hunk)
 nmap [h <plug>(signify-prev-hunk)
+
+" vim-fugitive
+nnoremap <leader>gb :Git blame<CR>
+nnoremap <leader>gd :Gvdiffsplit<CR>
+nnoremap <leader>gl :Git log --oneline<CR>
+nnoremap <leader>gf :0Gclog<CR>
+
+" Hunk actions
+nnoremap <leader>ghp :SignifyHunkDiff<CR>
+nnoremap <leader>ghr :SignifyHunkUndo<CR>
+nnoremap <leader>ghd :SignifyDiff<CR>
+
+" Hunk text object: dih deletes the hunk under the cursor, vih selects it.
+omap ih <plug>(signify-motion-inner-pending)
+xmap ih <plug>(signify-motion-inner-visual)
 
 " ---------------------------------------------------------------
 " 17. which-key descriptions
