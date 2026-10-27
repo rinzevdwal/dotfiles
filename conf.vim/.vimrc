@@ -560,8 +560,67 @@ let g:which_key_map.q = {
       \ 'q': 'Quit all',
       \ }
 
+let g:which_key_map.e = 'File explorer (sidebar)'
+
 " Plugins load after the vimrc, so register once startup is finished.
 augroup my_which_key
   autocmd!
   autocmd VimEnter * call which_key#register('<Space>', 'g:which_key_map')
 augroup END
+
+" ---- File explorer sidebar (fern) -----------------------------
+" <leader>e toggles a left sidebar rooted at the working directory, with
+" every folder expanded down to the current file (like VS Code).
+" Files open in the window you came from.
+let g:fern#default_hidden = 1      " show dotfiles (toggle with . in the tree)
+
+nnoremap <silent> <leader>e :Fern . -drawer -reveal=% -toggle -width=35<CR>
+
+function! s:FernSetup() abort
+  " Open / expand / collapse
+  nmap <buffer> <CR> <Plug>(fern-action-open-or-expand)
+  nmap <buffer> l    <Plug>(fern-action-open-or-expand)
+  nmap <buffer> h    <Plug>(fern-action-collapse)
+
+  " Splits and tabs (same as neo-tree)
+  nmap <buffer> s    <Plug>(fern-action-open:vsplit)
+  nmap <buffer> S    <Plug>(fern-action-open:split)
+  nmap <buffer> t    <Plug>(fern-action-open:tabedit)
+
+  " File operations
+  nmap <buffer> a    <Plug>(fern-action-new-file)
+  nmap <buffer> A    <Plug>(fern-action-new-dir)
+  nmap <buffer> r    <Plug>(fern-action-rename)
+  nmap <buffer> d    <Plug>(fern-action-remove)
+  nmap <buffer> y    <Plug>(fern-action-clipboard-copy)
+  nmap <buffer> x    <Plug>(fern-action-clipboard-move)
+  nmap <buffer> p    <Plug>(fern-action-clipboard-paste)
+
+  " View
+  nmap <buffer> H    <Plug>(fern-action-hidden:toggle)
+  nmap <buffer> R    <Plug>(fern-action-reload:all)
+  nmap <buffer> .    <Plug>(fern-action-enter)
+  nmap <buffer> <BS> <Plug>(fern-action-leave)
+  nnoremap <silent> <buffer> q :close<CR>
+
+  " Keep your window navigation inside the tree.
+  nnoremap <buffer> <C-h> <C-w>h
+  nnoremap <buffer> <C-j> <C-w>j
+  nnoremap <buffer> <C-k> <C-w>k
+  nnoremap <buffer> <C-l> <C-w>l
+endfunction
+
+" Icons in the tree (needs a Nerd Font in the terminal).
+let g:fern#renderer = 'nerdfont'
+
+" Color the icons by file type. Re-applied when a fern buffer opens.
+augroup my_glyph_palette
+  autocmd!
+  autocmd FileType fern call glyph_palette#apply()
+augroup END
+
+augroup my_fern
+  autocmd!
+  autocmd FileType fern call s:FernSetup()
+augroup END
+
