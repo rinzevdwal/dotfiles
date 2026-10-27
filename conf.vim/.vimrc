@@ -574,7 +574,11 @@ augroup END
 " Files open in the window you came from.
 let g:fern#default_hidden = 1      " show dotfiles (toggle with . in the tree)
 
+let g:fern_disable_startup_warnings = 1
+
+" <leader>e: cwd, revealing the current file. <leader>E: directory of the current file.
 nnoremap <silent> <leader>e :Fern . -drawer -reveal=% -toggle -width=35<CR>
+nnoremap <silent> <leader>E :Fern %:p:h -drawer -reveal=% -toggle -width=35<CR>
 
 function! s:FernSetup() abort
   " Open / expand / collapse
@@ -624,3 +628,8 @@ augroup my_fern
   autocmd FileType fern call s:FernSetup()
 augroup END
 
+" fern-git-status: skip the slowest or noisiest checks.
+let g:fern_git_status#disable_ignored = 1      " don't mark ignored files
+" let g:fern_git_status#disable_submodules = 1  " skip submodule status
+" let g:fern_git_status#disable_untracked = 1   " uncomment to hide untracked files
+" let g:fern_git_status#disable_directories = 1 " uncomment to hide status on folders
