@@ -285,6 +285,9 @@ nnoremap ]b    :bnext<CR>
 nnoremap <leader>bb :e #<CR>
 nnoremap <leader>bd :bdelete<CR>
 
+" Deleta all vuffers except the current one.
+nnoremap <leader>bo :%bdelete <Bar> edit # <Bar> bdelete #<CR>
+
 " ---- General mappings -----------------------------------------
 " Y yanks to the end of the line, like D and C (default: same as yy).
 nnoremap Y y$
@@ -547,6 +550,7 @@ let g:which_key_map.b = {
       \ 'name': '+buffer',
       \ 'b': 'Alternate buffer',
       \ 'd': 'Delete buffer',
+      \ 'o': 'Delete other buffers'
       \ }
 
 let g:which_key_map.w = {
