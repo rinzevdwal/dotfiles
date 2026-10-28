@@ -180,7 +180,7 @@ set clipboard=unnamedplus
 " Let the cursor move past the end of a line in visual block mode.
 set virtualedit=block
 
-" Insert-mode completion popup: at most 10 entries, always show the menu,
+" Insert-mode completion pop-up: at most 10 entries, always show the menu,
 " and don't preselect an entry.
 set pumheight=10
 set completeopt=menu,menuone,noselect
@@ -256,6 +256,10 @@ if !isdirectory(expand(&undodir))
   call mkdir(expand(&undodir), 'p', 0700)
 endif
 
+" New empty file / edit your vimrc.
+nnoremap <leader>fn :enew<CR>
+nnoremap <leader>fc :edit $MYVIMRC<CR>
+
 " ---- Windows and buffers --------------------------------------
 " New splits open to the right / below instead of left / above.
 set splitbelow splitright
@@ -285,8 +289,18 @@ nnoremap ]b    :bnext<CR>
 nnoremap <leader>bb :e #<CR>
 nnoremap <leader>bd :bdelete<CR>
 
-" Deleta all vuffers except the current one.
+" Delete all buffers except the current one.
 nnoremap <leader>bo :%bdelete <Bar> edit # <Bar> bdelete #<CR>
+
+" ---- UI toggles -----------------------------------------------
+nnoremap <leader>uw :set wrap!<CR>
+nnoremap <leader>us :set spell!<CR>
+nnoremap <leader>ul :set number!<CR>
+nnoremap <leader>uL :set relativenumber!<CR>
+
+" Clear search highlight, update diffs and redraw the screen.
+" This replaces the Ctrl-l redraw you lost to the window mapping.
+nnoremap <silent> <leader>ur :nohlsearch <Bar> diffupdate <Bar> redraw!<CR>
 
 " ---- General mappings -----------------------------------------
 " Y yanks to the end of the line, like D and C (default: same as yy).
@@ -316,6 +330,12 @@ nnoremap <leader>qq :qa<CR>
 
 " Forgot sudo? :w!! saves the file as root.
 cnoremap w!! w !sudo tee % >/dev/null
+
+" ---- Comments (vim-commentary) --------------------------------
+" gco / gcO add a comment line below / above and start typing in it.
+" Uses nmap (not nnoremap) because it relies on vim-commentary's gcc.
+nmap gco o<Esc>Vcx<Esc>:normal gcc<CR>fxa<BS>
+nmap gcO O<Esc>Vcx<Esc>:normal gcc<CR>fxa<BS>
 
 " ---- fzf (fzf.vim) --------------------------------------------
 " Needs: fzf, the fzf and fzf.vim plugins in ~/.vim/pack/plugins/start/,
@@ -364,24 +384,24 @@ nnoremap <leader>:       :History:<CR>
 nnoremap <leader>gc      :Commits<CR>
 nnoremap <leader>gs      :GFiles?<CR>
 
-" ---- LazyGit popup --------------------------------------------
-" <leader>gg opens lazygit in a centered popup with rounded borders.
-" The popup scales with the Vim window and is removed (together with its
+" ---- LazyGit pop-up --------------------------------------------
+" <leader>gg opens lazygit in a centered pop-up with rounded borders.
+" The pop-up scales with the Vim window and is removed (together with its
 " terminal buffer) when lazygit exits.
 " Needs: lazygit in $PATH, Vim built with +terminal and +popupwin.
 
-" Popup size as a fraction of the Vim window.
+" Pop-up size as a fraction of the Vim window.
 let s:width_ratio = 0.9
 let s:height_ratio = 0.85
 
-" Smallest popup (inside the border) in which lazygit stays usable.
+" Smallest pop-up (inside the border) in which lazygit stays usable.
 let s:min_width = 80
 let s:min_height = 24
 
 let s:popup = 0
 let s:buf = 0
 
-" Returns [width, height] of the popup contents: scaled to the window,
+" Returns [width, height] of the pop-up contents: scaled to the window,
 " raised to the minimum, then capped to what fits on screen (borders and
 " command line excluded). The cap wins on very small terminals.
 function! s:Size() abort
@@ -392,7 +412,7 @@ function! s:Size() abort
   return [l:width, l:height]
 endfunction
 
-" Called when lazygit exits: close the popup, wipe the terminal buffer,
+" Called when lazygit exits: close the pop-up, wipe the terminal buffer,
 " and reload files that lazygit changed on disk.
 function! s:OnExit(job, status) abort
   if s:popup
@@ -405,7 +425,7 @@ function! s:OnExit(job, status) abort
   checktime
 endfunction
 
-" Keep the popup in step with the window when Vim is resized.
+" Keep the pop-up in step with the window when Vim is resized.
 function! s:OnResize() abort
   if !s:popup || empty(popup_getpos(s:popup))
     return
@@ -495,7 +515,7 @@ nnoremap <leader>gl :Git log --oneline<CR>
 nnoremap <leader>gf :0Gclog<CR>
 
 " ---- Which-key (vim-which-key) --------------------------------
-" Pressing Space shows a popup with the available keys and the
+" Pressing Space shows a pop-up with the available keys and the
 " descriptions below. Keys missing from the dictionary still appear,
 " with their command as the description. 'name' with a leading + marks
 " a group of keys.
@@ -516,6 +536,17 @@ let g:which_key_map.f = {
       \ 'g': 'Git files',
       \ 'r': 'Recent files',
       \ 'b': 'Buffers',
+      \ 'n': 'New file',
+      \ 'c': 'Edit vimrc',
+      \ }
+
+let g:which_key_map.u = {
+      \ 'name': '+ui',
+      \ 'w': 'Toggle wrap',
+      \ 's': 'Toggle spell',
+      \ 'l': 'Toggle line numbers',
+      \ 'L': 'Toggle relative numbers',
+      \ 'r': 'Redraw / clear search',
       \ }
 
 let g:which_key_map.s = {
