@@ -595,7 +595,8 @@ let g:which_key_map.q = {
       \ 'q': 'Quit all',
       \ }
 
-let g:which_key_map.e = 'File explorer (sidebar)'
+let g:which_key_map.e = 'File explorer'
+let g:which_key_map.E = 'File explorer dir of file'
 
 " Plugins load after the vimrc, so register once startup is finished.
 augroup my_which_key
